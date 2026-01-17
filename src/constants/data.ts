@@ -4,25 +4,25 @@ export type Locale = "en" | "uk" | "ru";
 export const socials = [
   {
     name: "GitHub",
-    url: "https://github.com/yourusername",
+    url: "https://github.com/pippsza",
     iconName: "Github",
     color: "#333",
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/yourusername",
+    url: "https://linkedin.com/in/pippsza",
     iconName: "Linkedin",
     color: "#0077b5",
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/yourusername",
+    url: "https://twitter.com/pippsza",
     iconName: "Twitter",
     color: "#1DA1F2",
   },
   {
     name: "Email",
-    url: "mailto:your.email@example.com",
+    url: "mailto:pippsza@example.com",
     iconName: "Mail",
     color: "#EA4335",
   },

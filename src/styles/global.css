@@ -3,18 +3,18 @@
 /* Custom theme variables for dark and light modes */
 @theme {
   /* Custom color palette - Black and White theme */
-  --color-primary: oklch(0.20 0.02 264);
-  --color-primary-dark: oklch(0.10 0.01 264);
-  --color-secondary: oklch(0.95 0.01 264);
-  --color-accent: oklch(0.98 0.005 264);
+  --color-primary: oklch(0.15 0 0);
+  --color-primary-dark: oklch(0.05 0 0);
+  --color-secondary: oklch(0.85 0 0);
+  --color-accent: oklch(0.98 0 0);
 
   /* Background colors for dark/light themes */
-  --color-bg-dark: oklch(0.08 0.01 264);
-  --color-bg-light: oklch(0.98 0.002 264.54);
+  --color-bg-dark: oklch(0.05 0 0);
+  --color-bg-light: oklch(0.99 0 0);
 
   /* Text colors */
-  --color-text-dark: oklch(0.95 0.007 264.54);
-  --color-text-light: oklch(0.21 0.034 264.66);
+  --color-text-dark: oklch(0.95 0 0);
+  --color-text-light: oklch(0.15 0 0);
 
   /* Custom spacing */
   --spacing-section: 6rem;
@@ -75,11 +75,7 @@ body::before {
       var(--color-primary) 0%,
       transparent 40%
     ),
-    radial-gradient(
-      circle at 20% 20%,
-      var(--color-accent) 0%,
-      transparent 35%
-    );
+    radial-gradient(circle at 20% 20%, var(--color-accent) 0%, transparent 35%);
   background-size: 200% 200%;
   animation: meshGradient 20s ease infinite;
   filter: blur(80px);
@@ -172,4 +168,22 @@ html {
 
 :root[data-theme="light"] ::-webkit-scrollbar-track {
   background: var(--color-bg-light);
+}
+
+/* Skills Carousel Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--scroll-speed, 30s) linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
 }

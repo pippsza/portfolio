@@ -6,6 +6,7 @@ import Card from '../../components/ui/Card';
 import Badge from '../../components/ui/Badge';
 import Icon from '../../components/Icon';
 import DevOpsPipeline from '../../components/DevOpsPipeline';
+import SkillsCarousel from '../../components/SkillsCarousel';
 import { Image } from 'astro:assets';
 
 export function getStaticPaths() {
@@ -21,7 +22,7 @@ const t = dictionary[lang];
 const localizedProjects = projects[lang];
 ---
 
-<Layout title={`${t.greeting} | Portfolio`} description={t.heroDescription} lang={lang}>
+<Layout title={`Astakhov Bohdan | pippsza - Full Stack Developer Portfolio`} description={`${t.heroDescription} | Portfolio of Astakhov Bohdan (@pippsza) - Modern web development with Next.js, React, Node.js, and more.`} lang={lang}>
   <!-- Hero Section -->
   <section class="min-h-screen flex items-center justify-center px-6">
     <div class="container mx-auto text-center">
@@ -144,21 +145,14 @@ const localizedProjects = projects[lang];
         </p>
       </div>
       
-      <div class="grid md:grid-cols-3 gap-8">
-        {Object.entries(skills).map(([category, skillList]) => (
-          <Card client:load hover={false}>
-            <h3 class="text-2xl font-bold mb-6 text-center text-primary">
-              {category}
-            </h3>
-            <div class="space-y-4">
-              {skillList.map((skill) => (
-                <div class="flex items-center gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-                  <Icon name={skill.iconName} size={24} class="text-primary" client:load />
-                  <span class="font-medium">{skill.name}</span>
-                </div>
-              ))}
-            </div>
-          </Card>
+      <div class="space-y-8">
+        {Object.entries(skills).map(([category, skillList], index) => (
+          <SkillsCarousel 
+            skills={skillList} 
+            category={category} 
+            speed={25 + index * 5}
+            client:load 
+          />
         ))}
       </div>
     </div>

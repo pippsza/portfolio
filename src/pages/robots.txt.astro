@@ -1,0 +1,12 @@
+---
+const siteUrl = 'https://pippsza.dev'; // Change to your actual domain
+
+const robotsTxt = `User-agent: *
+Allow: /
+
+Sitemap: ${siteUrl}/sitemap.xml`;
+
+Astro.response.headers.set('Content-Type', 'text/plain');
+---
+
+{robotsTxt}

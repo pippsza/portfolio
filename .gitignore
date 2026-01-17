@@ -28,6 +28,13 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Documentation (old versions)
+/*.md
+!README.md
+docs/
+docs
+
 # Testing
 coverage/
 .nyc_output/
+node_modules
