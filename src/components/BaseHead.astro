@@ -1,0 +1,112 @@
+---
+import type { Locale } from '../constants/data';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Locale;
+  canonical?: string;
+  image?: string;
+}
+
+const { title, description, lang, canonical, image } = Astro.props;
+
+const siteUrl = 'https://yourportfolio.com'; // Change this to your actual domain
+const fullCanonical = canonical || `${siteUrl}/${lang}${Astro.url.pathname}`;
+const ogImage = image || `${siteUrl}/og-image.jpg`;
+
+// Map locale codes to proper language tags
+const langMap: Record<Locale, string> = {
+  en: 'en-US',
+  uk: 'uk-UA',
+  ru: 'ru-RU',
+};
+---
+
+<!-- Primary Meta Tags -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={fullCanonical} />
+
+<!-- Language alternates -->
+<link rel="alternate" hreflang="en" href={`${siteUrl}/en${Astro.url.pathname.replace(/^\/(en|uk|ru)/, '')}`} />
+<link rel="alternate" hreflang="uk" href={`${siteUrl}/uk${Astro.url.pathname.replace(/^\/(en|uk|ru)/, '')}`} />
+<link rel="alternate" hreflang="ru" href={`${siteUrl}/ru${Astro.url.pathname.replace(/^\/(en|uk|ru)/, '')}`} />
+<link rel="alternate" hreflang="x-default" href={`${siteUrl}/en${Astro.url.pathname.replace(/^\/(en|uk|ru)/, '')}`} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={fullCanonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={langMap[lang]} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={fullCanonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Fonts - Geist Sans -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Theme and Language Detection Script - Runs before page render -->
+<script is:inline>
+  // Theme detection
+  const getThemePreference = () => {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  };
+  
+  const theme = getThemePreference();
+  document.documentElement.setAttribute('data-theme', theme);
+  
+  // Language detection and redirect (only on root path)
+  if (window.location.pathname === '/') {
+    const browserLang = navigator.language.toLowerCase();
+    let targetLang = 'en'; // default
+    
+    if (browserLang.startsWith('uk')) {
+      targetLang = 'uk';
+    } else if (browserLang.startsWith('ru')) {
+      targetLang = 'ru';
+    }
+    
+    // Check if user has a language preference stored
+    const storedLang = localStorage.getItem('preferredLanguage');
+    if (storedLang && ['en', 'uk', 'ru'].includes(storedLang)) {
+      targetLang = storedLang;
+    }
+    
+    // Redirect to language-specific path
+    window.location.href = `/${targetLang}/`;
+  }
+  
+  // Mouse tracking for interactive background
+  document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) * 100;
+      const y = (e.clientY / window.innerHeight) * 100;
+      
+      body.style.setProperty('--mouse-x', `${x}%`);
+      body.style.setProperty('--mouse-y', `${y}%`);
+    });
+  });
+</script>

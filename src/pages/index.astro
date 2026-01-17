@@ -1,0 +1,37 @@
+---
+// Root redirect is handled by inline script in BaseHead.astro
+// This file serves as a fallback
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script is:inline>
+      // Detect browser language and redirect
+      const browserLang = navigator.language.toLowerCase();
+      let targetLang = 'en';
+      
+      if (browserLang.startsWith('uk')) {
+        targetLang = 'uk';
+      } else if (browserLang.startsWith('ru')) {
+        targetLang = 'ru';
+      }
+      
+      // Check stored preference
+      const storedLang = localStorage.getItem('preferredLanguage');
+      if (storedLang && ['en', 'uk', 'ru'].includes(storedLang)) {
+        targetLang = storedLang;
+      }
+      
+      window.location.href = `/${targetLang}/`;
+    </script>
+  </head>
+  <body>
+    <div style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: system-ui;">
+      <p>Redirecting...</p>
+    </div>
+  </body>
+</html>

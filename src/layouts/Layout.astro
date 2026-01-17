@@ -1,0 +1,73 @@
+---
+import type { Locale } from '../constants/data';
+import { dictionary } from '../constants/data';
+import BaseHead from '../components/BaseHead.astro';
+import ThemeToggle from '../components/ThemeToggle';
+import LanguagePicker from '../components/LanguagePicker';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Locale;
+}
+
+const { title, description, lang } = Astro.props;
+const t = dictionary[lang];
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <BaseHead title={title} description={description} lang={lang} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-opacity-80 border-b border-gray-800/50">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href={`/${lang}/`} class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Portfolio
+          </a>
+          
+          <div class="hidden md:flex items-center gap-8">
+            <a href={`/${lang}/#about`} class="hover:text-primary transition-colors">{t.about}</a>
+            <a href={`/${lang}/#projects`} class="hover:text-primary transition-colors">{t.projects}</a>
+            <a href={`/${lang}/#skills`} class="hover:text-primary transition-colors">{t.skills}</a>
+            <a href={`/${lang}/#contact`} class="hover:text-primary transition-colors">{t.contact}</a>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <LanguagePicker client:load currentLang={lang} currentPath={Astro.url.pathname} />
+            <ThemeToggle client:load />
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800/50 mt-24 py-12">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="text-center md:text-left">
+            <p class="text-gray-400">
+              © {new Date().getFullYear()} {t.rights}
+            </p>
+            <p class="text-sm text-gray-500 mt-2">
+              {t.builtWith} <span class="text-primary">Astro</span>, <span class="text-primary">Preact</span> & <span class="text-primary">Tailwind CSS v4</span>
+            </p>
+          </div>
+          
+          <div class="flex gap-4">
+            {/* Social links will be added dynamically from data.ts */}
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
