@@ -12,12 +12,12 @@ export default function Card({
   hover = true,
 }: CardProps) {
   const hoverStyles = hover
-    ? "hover:scale-105 hover:shadow-2xl hover:border-primary/50"
+    ? "hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
     : "";
 
   return (
     <div
-      class={`bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 transition-all duration-300 ${hoverStyles} ${className}`}
+      class={`bg-surface/30 backdrop-blur-sm border border-border/30 rounded-xl p-6 transition-all duration-300 ${hoverStyles} ${className}`}
     >
       {children}
     </div>

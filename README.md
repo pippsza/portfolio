@@ -42,14 +42,6 @@ Open your browser at `http://localhost:4321`
 - **Icons**: Lucide Preact
 - **Animations**: CSS Animations + Preact
 
-## 📚 Documentation
-
-Full documentation available in `/docs`:
-
-- [Setup Guide](docs/SETUP.ru.md) - Installation and configuration
-- [Architecture](docs/ARCHITECTURE.ru.md) - Technical deep dive
-- [Russian README](docs/README.ru.md) - Полная документация на русском
-
 ## 🎨 Customization
 
 ### Personal Info

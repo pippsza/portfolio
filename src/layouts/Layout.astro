@@ -4,6 +4,7 @@ import { dictionary } from '../constants/data';
 import BaseHead from '../components/BaseHead.astro';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguagePicker from '../components/LanguagePicker';
+import Icon from '../components/Icon';
 
 interface Props {
   title: string;
@@ -22,22 +23,57 @@ const t = dictionary[lang];
     <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
+    <!-- Global rain animation -->
+    <div class="rain-container">
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+      <div class="rain-line"></div>
+    </div>
+
     <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-opacity-80 border-b border-gray-800/50">
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-bg-dark/80 border-b border-border/30">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
-          <a href={`/${lang}/`} class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Portfolio
+          <!-- Logo -->
+          <a href={`/${lang}/`} class="flex items-center gap-2 group">
+            <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+              <Icon name="Code2" size={18} class="text-accent" client:load />
+            </div>
+            <span class="text-lg font-bold text-text-dark group-hover:text-accent transition-colors duration-300">
+              pippsza
+            </span>
           </a>
-          
-          <div class="hidden md:flex items-center gap-8">
-            <a href={`/${lang}/#about`} class="hover:text-primary transition-colors">{t.about}</a>
-            <a href={`/${lang}/#projects`} class="hover:text-primary transition-colors">{t.projects}</a>
-            <a href={`/${lang}/#skills`} class="hover:text-primary transition-colors">{t.skills}</a>
-            <a href={`/${lang}/#contact`} class="hover:text-primary transition-colors">{t.contact}</a>
+
+          <!-- Navigation Links -->
+          <div class="hidden md:flex items-center gap-1">
+            <a href={`/${lang}/#about`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.about}
+            </a>
+            <a href={`/${lang}/#experience`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.experience}
+            </a>
+            <a href={`/${lang}/#projects`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.projects}
+            </a>
+            <a href={`/${lang}/#skills`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.skills}
+            </a>
+            <a href={`/${lang}/#contact`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.contact}
+            </a>
           </div>
-          
-          <div class="flex items-center gap-4">
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
             <LanguagePicker client:load currentLang={lang} currentPath={Astro.url.pathname} />
             <ThemeToggle client:load />
           </div>
@@ -51,20 +87,30 @@ const t = dictionary[lang];
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-800/50 mt-24 py-12">
+    <footer class="border-t border-border/30 mt-24 py-12">
       <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6">
           <div class="text-center md:text-left">
-            <p class="text-gray-400">
+            <div class="flex items-center gap-2 justify-center md:justify-start mb-2">
+              <div class="w-6 h-6 rounded-md bg-accent/10 flex items-center justify-center">
+                <Icon name="Code2" size={14} class="text-accent" client:load />
+              </div>
+              <span class="font-semibold text-text-dark">pippsza</span>
+            </div>
+            <p class="text-sm text-text-muted">
               © {new Date().getFullYear()} {t.rights}
             </p>
-            <p class="text-sm text-gray-500 mt-2">
-              {t.builtWith} <span class="text-primary">Astro</span>, <span class="text-primary">Preact</span> & <span class="text-primary">Tailwind CSS v4</span>
-            </p>
           </div>
-          
-          <div class="flex gap-4">
-            {/* Social links will be added dynamically from data.ts */}
+
+          <div class="text-center md:text-right">
+            <p class="text-sm text-text-muted">
+              {t.builtWith}
+              <span class="text-accent mx-1">Astro</span>
+              <span class="text-text-muted/50">+</span>
+              <span class="text-accent mx-1">Preact</span>
+              <span class="text-text-muted/50">+</span>
+              <span class="text-accent mx-1">Tailwind CSS</span>
+            </p>
           </div>
         </div>
       </div>

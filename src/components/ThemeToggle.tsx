@@ -1,4 +1,3 @@
-import { h } from "preact";
 import { useState, useEffect } from "preact/hooks";
 import { Sun, Moon } from "lucide-preact";
 
@@ -30,7 +29,7 @@ export default function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        class="p-2 rounded-lg border border-gray-700 hover:border-primary transition-colors"
+        class="p-2 rounded-lg border border-border/50 bg-surface/30 backdrop-blur-sm"
         aria-label="Toggle theme"
       >
         <div class="w-5 h-5" />
@@ -41,16 +40,17 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      class="p-2 rounded-lg border border-gray-700 hover:border-primary transition-colors hover:scale-110 active:scale-95"
+      class="p-2 rounded-lg border border-border/50 bg-surface/30 backdrop-blur-sm
+             hover:border-accent/50 hover:bg-surface-elevated/50 transition-all duration-300 group"
       aria-label={
         theme === "light" ? "Switch to dark mode" : "Switch to light mode"
       }
       title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     >
       {theme === "light" ? (
-        <Moon size={20} class="text-gray-700" />
+        <Moon size={18} class="text-text-muted group-hover:text-accent transition-colors duration-300" />
       ) : (
-        <Sun size={20} class="text-yellow-400" />
+        <Sun size={18} class="text-accent" />
       )}
     </button>
   );

@@ -10,25 +10,42 @@ export const socials = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/pippsza",
+    url: "https://www.linkedin.com/in/bohdan-astakhov-36a95a349/",
     iconName: "Linkedin",
     color: "#0077b5",
   },
-  {
-    name: "Twitter",
-    url: "https://twitter.com/pippsza",
-    iconName: "Twitter",
-    color: "#1DA1F2",
-  },
+  // {
+  //   name: "Twitter",
+  //   url: "https://twitter.com/pippsza",
+  //   iconName: "Twitter",
+  //   color: "#1DA1F2",
+  // },
   {
     name: "Email",
-    url: "mailto:pippsza@example.com",
+    url: "mailto:bastahov16@gmail.com",
     iconName: "Mail",
     color: "#EA4335",
   },
+  {
+    name: "Telegram",
+    url: "https://t.me/astakhovBohdan",
+    iconName: "Send",
+    color: "#0088cc",
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/pippsza/",
+    iconName: "Instagram",
+    color: "#C13584",
+  },
+  // {
+  //   name: "Discord",
+  //   url: "https://discord.com/invite/pippsza",
+  //   iconName: "Discord",
+  //   color: "#7289DA",
+  // },
 ];
 
-// Projects
 export const projects: Record<
   Locale,
   Array<{
@@ -174,17 +191,19 @@ export const projects: Record<
 // Skills categorized
 export const skills = {
   Frontend: [
-    { name: "Next.js", iconName: "Layers" },
+    { name: "JavaScript", iconName: "FileJson" },
+    { name: "TypeScript", iconName: "Code2" },
     { name: "React", iconName: "Atom" },
+    { name: "Next.js", iconName: "Layers" },
     { name: "React Native", iconName: "Smartphone" },
     { name: "Tailwind CSS", iconName: "Palette" },
-    { name: "TypeScript", iconName: "Code2" },
     { name: "Preact", iconName: "Zap" },
   ],
   Backend: [
     { name: "Node.js", iconName: "Server" },
     { name: "Express.js", iconName: "Zap" },
     { name: "Python", iconName: "Code2" },
+    { name: "Telegram Bot", iconName: "Bot" },
     { name: "Payload CMS", iconName: "Database" },
     { name: "REST API", iconName: "Globe" },
     { name: "GraphQL", iconName: "Network" },
@@ -198,47 +217,107 @@ export const skills = {
     { name: "CI/CD", iconName: "RefreshCw" },
     { name: "Git", iconName: "GitBranch" },
     { name: "Linux", iconName: "Terminal" },
+    { name: "Figma", iconName: "Figma" },
   ],
 };
 
-// DevOps pipeline stages
+// DevOps pipeline stages - using yellow accent color
 export const devOpsPipeline = [
   {
     name: "Push Code",
     tool: "GitHub",
     iconName: "Github",
-    color: "#333",
-    description: "Code pushed to repository",
   },
   {
     name: "CI/CD",
     tool: "GitHub Actions",
     iconName: "GitBranch",
-    color: "#2088FF",
-    description: "Automated build and tests",
   },
   {
     name: "Containerize",
     tool: "Docker",
     iconName: "Container",
-    color: "#2496ED",
-    description: "Build Docker image",
   },
   {
     name: "Registry",
     tool: "Docker Hub",
     iconName: "Package",
-    color: "#2496ED",
-    description: "Push to registry",
   },
   {
     name: "Deploy",
     tool: "VPS",
     iconName: "Cloud",
-    color: "#10B981",
-    description: "Deploy to production",
   },
 ];
+
+// Work experience
+export interface Experience {
+  company: string;
+  position: string;
+  period: string;
+  location: string;
+  description: string;
+  technologies: string[];
+}
+
+export const experience: Record<Locale, Experience[]> = {
+  en: [
+    {
+      company: "Cyber Pioneers inc.",
+      position: "Full Stack Developer",
+      period: "2025 - Present",
+      location: "Remote",
+      description:
+        "Developing and maintaining web applications using modern technologies. Building scalable APIs and implementing responsive user interfaces.",
+      technologies: [
+        "Next.js",
+
+        "TypeScript",
+        "MongoDB",
+        "Payload CMS",
+        "Docker",
+      ],
+    },
+    // Add more experience entries here
+  ],
+  uk: [
+    {
+      company: "Cyber Pioneers inc.",
+      position: "Full Stack Розробник",
+      period: "2025 - Теперішній час",
+      location: "Віддалено",
+      description:
+        "Розробка та підтримка веб-додатків з використанням сучасних технологій. Створення масштабованих API та реалізація адаптивних інтерфейсів.",
+      technologies: [
+        "Next.js",
+
+        "TypeScript",
+        "MongoDB",
+        "Payload CMS",
+        "Docker",
+      ],
+    },
+    // Додайте більше записів досвіду тут
+  ],
+  ru: [
+    {
+      company: "Cyber Pioneers inc.",
+      position: "Full Stack Разработчик",
+      period: "2025 - Настоящее время",
+      location: "Удаленно",
+      description:
+        "Разработка и поддержка веб-приложений с использованием современных технологий. Создание масштабируемых API и реализация адаптивных интерфейсов.",
+      technologies: [
+        "Next.js",
+
+        "TypeScript",
+        "MongoDB",
+        "Payload CMS",
+        "Docker",
+      ],
+    },
+  ],
+};
 
 // Dictionary for UI labels
 export const dictionary: Record<Locale, Record<string, string>> = {
@@ -246,6 +325,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Home",
     about: "About",
+    experience: "Experience",
     projects: "Projects",
     skills: "Skills",
     contact: "Contact",
@@ -277,6 +357,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     devOpsTitle: "DevOps Pipeline",
     devOpsDescription: "My automated deployment workflow",
 
+    // Experience Section
+    experienceTitle: "Work Experience",
+    experienceDescription: "My professional journey",
+
     // Contact Section
     contactTitle: "Get In Touch",
     contactDescription: "Let's work together on your next project",
@@ -298,6 +382,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Головна",
     about: "Про мене",
+    experience: "Досвід",
     projects: "Проєкти",
     skills: "Навички",
     contact: "Контакти",
@@ -329,6 +414,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     devOpsTitle: "DevOps Конвеєр",
     devOpsDescription: "Мій автоматизований процес розгортання",
 
+    // Experience Section
+    experienceTitle: "Досвід роботи",
+    experienceDescription: "Мій професійний шлях",
+
     // Contact Section
     contactTitle: "Зв'язатися",
     contactDescription: "Давайте попрацюємо разом над вашим наступним проєктом",
@@ -350,6 +439,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Главная",
     about: "Обо мне",
+    experience: "Опыт",
     projects: "Проекты",
     skills: "Навыки",
     contact: "Контакты",
@@ -380,6 +470,10 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // DevOps Section
     devOpsTitle: "DevOps Конвейер",
     devOpsDescription: "Мой автоматизированный процесс развертывания",
+
+    // Experience Section
+    experienceTitle: "Опыт работы",
+    experienceDescription: "Мой профессиональный путь",
 
     // Contact Section
     contactTitle: "Связаться",

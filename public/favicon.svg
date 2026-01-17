@@ -1,10 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:rgb(99,102,241);stop-opacity:1" />
-      <stop offset="100%" style="stop-color:rgb(168,85,247);stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <circle cx="50" cy="50" r="45" fill="url(#grad)"/>
-  <text x="50" y="60" font-size="40" font-weight="bold" text-anchor="middle" fill="white">P</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" role="img" aria-label="favicon">
+ 
+
+  <!-- Background circle with gradient -->
+  <circle cx="14" cy="14" r="12" fill="url(#grad)" />
+
+  <!-- Yellow outline (subtle inner stroke) -->
+  <!-- <circle cx="14" cy="14" r="11.2" fill="none" stroke="#FACC15" stroke-width="1.6" /> -->
+
+  <!-- Shift icon content inward to add padding -->
+  <g transform="translate(2,2)">
+    <!-- Lucide 'code' / arrows + slash icon (white) -->
+    <path d="m18 16 4-4-4-4" stroke="#FACC15" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="m6 8-4 4 4 4" stroke="#FACC15" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="m14.5 4-5 16" stroke="#FACC15" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
 </svg>

@@ -1,4 +1,3 @@
-import { h } from "preact";
 import {
   Github,
   Linkedin,
@@ -22,6 +21,15 @@ import {
   Terminal,
   Package,
   ExternalLink,
+  Bot,
+  Figma,
+  FileJson,
+  Briefcase,
+  Calendar,
+  MapPin,
+  // Discord,
+  Send,
+  Instagram,
   type LucideIcon,
 } from "lucide-preact";
 
@@ -49,6 +57,14 @@ const iconMap: Record<string, LucideIcon> = {
   Terminal,
   Package,
   ExternalLink,
+  Bot,
+  Figma,
+  FileJson,
+  Briefcase,
+  Calendar,
+  MapPin,
+  Send,
+  Instagram,
 };
 
 interface IconProps {

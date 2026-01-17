@@ -18,15 +18,15 @@ export default function Button({
   class: className = "",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200 hover:scale-105 active:scale-95";
+    "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 hover:scale-105 active:scale-95";
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg shadow-primary/50 hover:shadow-xl hover:shadow-primary/60",
+      "bg-accent text-primary hover:bg-accent-hover shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30",
     secondary:
-      "bg-gradient-to-r from-secondary to-accent text-white shadow-lg shadow-secondary/50 hover:shadow-xl hover:shadow-secondary/60",
+      "bg-surface text-text-dark hover:bg-surface-elevated shadow-lg shadow-surface/20",
     outline:
-      "border-2 border-primary text-primary hover:bg-primary hover:text-white",
+      "border border-border text-text-dark hover:border-accent hover:text-accent",
   };
 
   const sizes = {
