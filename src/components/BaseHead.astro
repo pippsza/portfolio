@@ -11,9 +11,11 @@ interface Props {
 
 const { title, description, lang, canonical, image } = Astro.props;
 
-const siteUrl = 'https://yourportfolio.com'; // Change this to your actual domain
+// Use your real site URL so OG tags point to absolute URLs
+const siteUrl = 'https://pippsza.dev';
 const fullCanonical = canonical || `${siteUrl}/${lang}${Astro.url.pathname}`;
-const ogImage = image || `${siteUrl}/og-image.jpg`;
+// Default og image placed in public/
+const ogImage = image || `${siteUrl}/og-image.png`;
 
 // Map locale codes to proper language tags
 const langMap: Record<Locale, string> = {
