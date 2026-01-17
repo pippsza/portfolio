@@ -5,6 +5,7 @@ import BaseHead from '../components/BaseHead.astro';
 import ThemeToggle from '../components/ThemeToggle';
 import LanguagePicker from '../components/LanguagePicker';
 import Icon from '../components/Icon';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -20,7 +21,6 @@ const t = dictionary[lang];
 <html lang={lang}>
   <head>
     <BaseHead title={title} description={description} lang={lang} />
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <!-- Global rain animation -->
