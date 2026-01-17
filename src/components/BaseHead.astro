@@ -2,20 +2,26 @@
 import type { Locale } from '../constants/data';
 
 interface Props {
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   lang: Locale;
   canonical?: string;
   image?: string;
 }
 
-const { title, description, lang, canonical, image } = Astro.props;
+const { title: rawTitle, description: rawDescription, lang, canonical, image } = Astro.props;
 
 // Use your real site URL so OG tags point to absolute URLs
 const siteUrl = 'https://pippsza.dev';
+const defaultTitle = 'Pippsza — Full Stack Developer Portfolio';
+const defaultDescription = 'Portfolio of Astakhov Bohdan (pippsza) — Full Stack developer from Zmiiv, Ukraine. I build modern web and mobile applications using Astro, Preact and Tailwind CSS.';
+
+const title = rawTitle || defaultTitle;
+const description = rawDescription || defaultDescription;
+
 const fullCanonical = canonical || `${siteUrl}/${lang}${Astro.url.pathname}`;
-// Default og image placed in public/
-const ogImage = image || `${siteUrl}/og-image.png`;
+// Default og image placed in public/ (SVG by default — replace with PNG if needed)
+const ogImage = image || `${siteUrl}/og-image.svg`;
 
 // Map locale codes to proper language tags
 const langMap: Record<Locale, string> = {
@@ -48,6 +54,11 @@ const langMap: Record<Locale, string> = {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Astakhov Bohdan — Full Stack Developer" />
+<link rel="image_src" href={ogImage} />
 <meta property="og:locale" content={langMap[lang]} />
 
 <!-- Twitter -->
@@ -56,11 +67,12 @@ const langMap: Record<Locale, string> = {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="Astakhov Bohdan — Full Stack Developer" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- Fonts - Geist Sans -->
+<!-- Fonts - Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -98,17 +110,4 @@ const langMap: Record<Locale, string> = {
     // Redirect to language-specific path
     window.location.href = `/${targetLang}/`;
   }
-  
-  // Mouse tracking for interactive background
-  document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth) * 100;
-      const y = (e.clientY / window.innerHeight) * 100;
-      
-      body.style.setProperty('--mouse-x', `${x}%`);
-      body.style.setProperty('--mouse-y', `${y}%`);
-    });
-  });
 </script>
