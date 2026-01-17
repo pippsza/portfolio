@@ -65,8 +65,8 @@ export default function ProjectCard({
             {project.tags.slice(0, 5).map((tag, tagIndex) => (
               <span
                 key={tag}
-                class="px-3 py-1 text-xs font-medium rounded-full bg-primary/50 text-color
-                       border border-border/50 hover:border-accent/50 hover:text-accent
+                class="px-3 py-1 text-xs font-medium rounded-full bg-surface-elevated text-text-dark
+                       border border-border hover:border-accent/50 hover:text-accent
                        transition-all duration-300"
                 style={{ animationDelay: `${tagIndex * 0.05}s` }}
               >
@@ -74,7 +74,7 @@ export default function ProjectCard({
               </span>
             ))}
             {project.tags.length > 5 && (
-              <span class="px-3 py-1 text-xs font-medium rounded-full bg-primary/30 text-text-muted">
+              <span class="px-3 py-1 text-xs font-medium rounded-full bg-surface-elevated text-text-dark border border-border">
                 +{project.tags.length - 5}
               </span>
             )}

@@ -5,10 +5,10 @@ interface BadgeProps {
 
 export default function Badge({ children, color = "primary" }: BadgeProps) {
   const colors = {
-    primary: "bg-primary/10 text-primary border-primary/30",
-    secondary: "bg-secondary/10 text-secondary border-secondary/30",
-    accent: "bg-accent/10 text-accent border-accent/30",
-    gray: "bg-gray-800/50 text-gray-300 border-gray-700",
+    primary: "bg-surface-elevated text-text-dark border-border",
+    secondary: "bg-surface-elevated text-text-dark border-border",
+    accent: "bg-surface-elevated text-accent border-accent/30",
+    gray: "bg-surface-elevated text-text-muted border-border",
   };
 
   return (

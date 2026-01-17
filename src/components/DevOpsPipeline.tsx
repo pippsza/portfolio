@@ -25,7 +25,7 @@ export default function DevOpsPipeline() {
 
                 {/* Stage info */}
                 <div>
-                  <h4 class="font-bold text-sm text-text-dark">{stage.name}</h4>
+                  <span class="font-bold text-sm text-text-dark block">{stage.name}</span>
                   <p class="text-xs text-accent font-medium mt-0.5">
                     {stage.tool}
                   </p>

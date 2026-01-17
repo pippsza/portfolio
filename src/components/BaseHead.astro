@@ -20,8 +20,8 @@ const title = rawTitle || defaultTitle;
 const description = rawDescription || defaultDescription;
 
 const fullCanonical = canonical || `${siteUrl}/${lang}${Astro.url.pathname}`;
-// Default og image placed in public/ (SVG by default — replace with PNG if needed)
-const ogImage = image || `${siteUrl}/og-image.svg`;
+// Default og image placed in public/ (PNG required for social media compatibility)
+const ogImage = image || `${siteUrl}/og-image.png`;
 
 // Map locale codes to proper language tags
 const langMap: Record<Locale, string> = {
@@ -54,7 +54,7 @@ const langMap: Record<Locale, string> = {
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
-<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Astakhov Bohdan — Full Stack Developer" />

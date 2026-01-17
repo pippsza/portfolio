@@ -55,7 +55,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
           <span
             key={tech}
             class="px-3 py-1 text-xs font-medium rounded-full
-                   bg-accent/10 text-accent border border-accent/20"
+                   bg-surface-elevated text-accent border border-accent/30"
           >
             {tech}
           </span>
