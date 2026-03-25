@@ -1,4 +1,3 @@
-import { useState } from "preact/hooks";
 import Icon from "./Icon";
 
 interface Skill {
@@ -17,8 +16,6 @@ export default function SkillsCarousel({
   category,
   speed = 25,
 }: SkillsCarouselProps) {
-  const [isPaused, setIsPaused] = useState(false);
-
   // Quadruple the skills array for seamless loop
   const duplicatedSkills = [...skills, ...skills, ...skills, ...skills];
 
@@ -32,17 +29,13 @@ export default function SkillsCarousel({
       </div>
 
       {/* Full-width carousel container */}
-      <div
-        class="relative overflow-hidden py-3"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <div class="relative overflow-hidden py-3">
         {/* Gradient fade on edges - using CSS variable for theme support */}
         <div class="carousel-fade-left" />
         <div class="carousel-fade-right" />
 
         <div
-          class={`flex gap-3 md:gap-4 ${isPaused ? "" : "animate-scroll"}`}
+          class="flex gap-3 md:gap-4 animate-scroll"
           style={
             {
               width: "max-content",

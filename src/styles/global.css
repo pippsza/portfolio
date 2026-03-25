@@ -73,6 +73,10 @@
   --color-text-light: oklch(0.20 0.02 260);
   --color-text-muted: oklch(0.40 0.02 260);
   --color-bg-light: oklch(0.98 0.005 260);
+  --color-primary: oklch(0.98 0.005 260);
+  --color-primary-dark: oklch(0.94 0.01 260);
+  --color-muted: oklch(0.60 0.01 260);
+  --color-muted-foreground: oklch(0.40 0.02 260);
 }
 
 /* Smooth transitions for theme switching - only on root level */
@@ -210,10 +214,16 @@ html {
 
 .animate-scroll {
   animation: scroll var(--scroll-speed, 30s) linear infinite;
+  will-change: transform;
 }
 
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Prevent layout shift on carousel items */
+.animate-scroll > * {
+  flex-shrink: 0;
 }
 
 /* Carousel fade gradients - works with both themes */
