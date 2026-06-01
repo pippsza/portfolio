@@ -385,19 +385,18 @@ export const stats: Record<Locale, Array<{ value: string; label: string }>> = {
   ],
 };
 
-// CV / Resume download links — public/cv/*
-// RU локаль использует EN-версию как fallback (русской версии пока нет).
+// CV / Resume download links — public/cv/* (one translation per locale)
 export const cvLinks: Record<Locale, string> = {
   en: "/cv/Bohdan_Astakhov_CV_EN.pdf",
   uk: "/cv/Bohdan_Astakhov_CV_UK.pdf",
-  ru: "/cv/Bohdan_Astakhov_CV_EN.pdf",
+  ru: "/cv/Bohdan_Astakhov_CV_RU.pdf",
 };
 
 // First-page preview images for the Resume section — public/cv/*
 export const cvPreviews: Record<Locale, string> = {
   en: "/cv/preview_en.jpg",
   uk: "/cv/preview_uk.jpg",
-  ru: "/cv/preview_en.jpg",
+  ru: "/cv/preview_ru.jpg",
 };
 
 // Dictionary for UI labels

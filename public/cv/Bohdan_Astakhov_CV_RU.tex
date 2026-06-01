@@ -1,0 +1,216 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,margin=0pt]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{graphicx}
+\usepackage{polyglossia}
+
+\setdefaultlanguage{russian}
+
+\setmainfont{DejaVu Sans}[
+  BoldFont       = {DejaVu Sans Bold},
+  ItalicFont     = {DejaVu Sans Oblique},
+  BoldItalicFont = {DejaVu Sans Bold Oblique},
+  Scale          = 0.92
+]
+
+% ============ PALETTE ============
+\definecolor{sidebar}{HTML}{1F2937}
+\definecolor{accent}{HTML}{60A5FA}
+\definecolor{accentLite}{HTML}{93C5FD}
+\definecolor{darkgray}{HTML}{111827}
+\definecolor{midgray}{HTML}{6B7280}
+\definecolor{lightgray}{HTML}{D1D5DB}
+\definecolor{sidebartext}{HTML}{E5E7EB}
+\definecolor{sidebardim}{HTML}{9CA3AF}
+\definecolor{pillbg}{HTML}{EFF6FF}
+\definecolor{pillborder}{HTML}{BFDBFE}
+
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\linespread{1.08}
+
+\emergencystretch=2em
+\hyphenpenalty=2000
+
+\newcommand{\sidebarwidth}{5.5cm}
+
+\AddToShipoutPictureBG*{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[sidebar] ([xshift=-\sidebarwidth]current page.north east) rectangle (current page.south east);
+  \end{tikzpicture}%
+}
+
+\titleformat{\section}
+  {\large\bfseries\color{accent}}{}{0em}{}
+  [{\vspace{-2pt}\color{lightgray}\titlerule[0.5pt]}]
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+
+\setlist[itemize]{leftmargin=12pt, itemsep=1pt, topsep=1pt, parsep=0pt, label=\textcolor{accent}{\textbullet}}
+
+\newcommand{\sbsection}[1]{%
+  \vspace{10pt}\par%
+  {\color{accentLite}\normalsize\bfseries\MakeUppercase{#1}}\par%
+  \vspace{2pt}%
+  {\color{accent!60}\rule{\linewidth}{0.4pt}}\par%
+  \vspace{4pt}%
+}
+
+\newcommand{\sblink}[2]{\href{#1}{\color{sidebartext}#2}}
+
+\newcommand{\statbox}[2]{%
+  \begin{tabular}{@{}c@{}}
+    {\Large\bfseries\color{accent} #1}\\[1pt]
+    {\footnotesize\color{midgray} #2}
+  \end{tabular}%
+}
+
+\newcommand{\pill}[1]{%
+  \tikz[baseline=(t.base)]{%
+    \node[draw=pillborder, fill=pillbg, rounded corners=3pt,
+          inner xsep=5pt, inner ysep=2pt, text=darkgray]
+    (t) {\footnotesize #1};%
+  }\hspace{2pt}%
+}
+
+\newcommand{\techcat}[1]{%
+  \par\vspace{3pt}%
+  {\footnotesize\color{midgray}\bfseries\MakeUppercase{#1}}\par\vspace{2pt}%
+}
+
+\begin{document}
+
+\noindent
+% ============ LEFT MAIN ============
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth\relax}
+\vspace*{1.1cm}\hspace{1.2cm}%
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth-1.8cm\relax}
+
+{\Huge\bfseries\color{darkgray}Богдан Астахов}\par
+\vspace{3pt}
+{\large\color{midgray}Fullstack-разработчик}\par
+\vspace{6pt}
+{\color{accent}\rule{\linewidth}{1.2pt}}
+
+\section*{Профиль}
+Fullstack-разработчик, специализация — \textbf{Payload CMS}, Stripe-биллинг
+и AI-интеграции для SaaS-платформ.
+
+\section*{Опыт}
+
+{\bfseries Fullstack-разработчик} \hfill {\color{midgray}\small Июль 2025 — настоящее время}\par
+{\itshape Cyber Pioneers Inc.} \hfill {\color{midgray}\small Удалённо}
+\begin{itemize}
+  \item Разрабатывал end-to-end продуктовые фичи в SaaS-сюите —
+        \textbf{B2B AutoTech (управление body-shop), internal HR/finance
+        ops с AI, marketing automation} — владение UI, API, схемой
+        и деплоем.
+  \item Построил plan-gated Stripe-подписки, питающие платные тарифы
+        в сюите.
+  \item Интегрировал AI-фичи через Vercel AI SDK (OpenAI, Anthropic,
+        ElevenLabs) — agent evaluations, генерация контента,
+        voice synthesis.
+  \item Добавил Qdrant-backed semantic search вместо keyword matching
+        для AI-рекомендаций.
+  \item Владею production-деплоем на нескольких VPS — Docker, Nginx,
+        GitHub Actions CI/CD, Watchtower auto-deploy.
+  \item Участвую в код-ревью; декомпозирую фичи с PM; поддерживаю
+        онбординг новых сотрудников.
+\end{itemize}
+
+\section*{Tech Stack}
+
+\techcat{Языки}
+\pill{TypeScript}\pill{JavaScript}\pill{Python}\pill{Bash}
+
+\techcat{Frontend}
+\pill{Next.js}\pill{React}\pill{Tailwind}\pill{shadcn/Radix}\pill{Zustand}
+
+\techcat{Backend}
+\pill{Payload CMS}\pill{Node.js}\pill{MongoDB}\pill{NextAuth}\pill{Stripe API}
+
+\techcat{AI \& LLM}
+\pill{Vercel AI SDK}\pill{OpenAI}\pill{Anthropic}\pill{ElevenLabs}\pill{Qdrant}
+
+\techcat{DevOps}
+\pill{Docker}\pill{GitHub Actions}\pill{Nginx}\pill{Watchtower}\pill{Linux}
+
+\section*{Избранные проекты}
+
+{\bfseries DDNet Bingo} \quad \href{https://github.com/pippsza/ddnet}{\color{accent}\small github.com/pippsza/ddnet}\par
+\vspace{2pt}
+Bingo- и race-платформа с Telegram-ботом-компаньоном для сообщества
+DDraceNetwork. Next.js + Payload CMS. Кастомный Docker-сетап спавнит
+контейнеры Teeworlds-серверов на игру прямо из основного приложения
+(Docker-out-of-Docker) с native SQLite3 rebuild. Playwright e2e.
+Работает на \href{https://bingo.pippsza.dev}{bingo.pippsza.dev}.
+
+\vspace{6pt}
+{\bfseries Steam Diploma} \quad \href{https://github.com/pippsza/steam-diploma}{\color{accent}\small github.com/pippsza/steam-diploma}\par
+\vspace{2pt}
+Steam-вдохновлённая платформа с AI-рекомендациями на базе RAG (Vercel AI
+SDK поверх embedding-based retrieval). Next.js + MongoDB. Работает на
+\href{https://sen.pippsza.dev}{sen.pippsza.dev}.
+
+\end{minipage}
+\end{minipage}%
+%
+% ============ RIGHT SIDEBAR (DARK) ============
+\begin{minipage}[t]{\sidebarwidth}
+\color{sidebartext}
+\vspace*{1.1cm}\hspace{0.7cm}%
+\begin{minipage}[t]{\dimexpr\sidebarwidth-1.4cm\relax}
+\raggedright
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\small
+\linespread{1.15}\selectfont
+
+\begin{center}
+\begin{tikzpicture}
+  \clip (0,0) circle (1.55cm);
+  \node at (0,0) {\includegraphics[width=3.1cm]{photo.jpg}};
+  \draw[accent, line width=1pt] (0,0) circle (1.55cm);
+\end{tikzpicture}
+\end{center}
+\vspace{6pt}
+
+\sbsection{Контакты}
+\faMapMarker*\ \,Харьков, Украина\par\vspace{4pt}
+\faPhone\ \,+380 98 660 1604\par\vspace{4pt}
+\faEnvelope\ \,\sblink{mailto:bastahov16@gmail.com}{bastahov16@gmail.com}\par\vspace{4pt}
+\faGithub\ \,\sblink{https://github.com/pippsza}{github.com/pippsza}\par\vspace{4pt}
+\faLinkedin\ \,\sblink{https://www.linkedin.com/in/bohdan-astakhov-36a95a349/}{bohdan-astakhov}\par\vspace{4pt}
+\faGlobe\ \,\sblink{https://pippsza.dev}{pippsza.dev}
+
+\sbsection{Образование}
+{\bfseries Степень бакалавра}\par
+{\color{sidebardim}\itshape в процессе}\par
+\vspace{2pt}
+Харьковский НТУ «ХПИ»\par
+{\color{accentLite}2024 — 2028}\par
+\vspace{10pt}
+
+{\bfseries IT-школа GoIT}\par
+Front-end Developer · Cybersecurity\par
+{\color{accentLite}2024 — 2025}
+
+\sbsection{Языки}
+Английский\ \ {\color{sidebardim}\itshape B2}\par\vspace{4pt}
+Украинский\ \ {\color{sidebardim}\itshape родной}\par\vspace{4pt}
+Русский\ \ {\color{sidebardim}\itshape родной}
+
+\end{minipage}
+\end{minipage}
+
+\end{document}

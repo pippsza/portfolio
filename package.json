@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "cv": "bash scripts/build-cv.sh",
+    "build": "astro check && astro build && rm -f dist/cv/*.tex dist/cv/*.aux dist/cv/*.log dist/cv/*.out",
     "preview": "astro preview",
     "astro": "astro"
   },
