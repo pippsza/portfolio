@@ -38,3 +38,7 @@ docs
 coverage/
 .nyc_output/
 node_modules
+
+# LaTeX build artifacts
+cv/*.aux
+cv/*.out

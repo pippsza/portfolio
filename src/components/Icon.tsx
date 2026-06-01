@@ -30,6 +30,15 @@ import {
   // Discord,
   Send,
   Instagram,
+  Download,
+  Sparkles,
+  Brain,
+  FlaskConical,
+  Drama,
+  Component,
+  ShieldCheck,
+  Boxes,
+  CreditCard,
   type LucideIcon,
 } from "lucide-preact";
 
@@ -65,6 +74,15 @@ const iconMap: Record<string, LucideIcon> = {
   MapPin,
   Send,
   Instagram,
+  Download,
+  Sparkles,
+  Brain,
+  FlaskConical,
+  Drama,
+  Component,
+  ShieldCheck,
+  Boxes,
+  CreditCard,
 };
 
 interface IconProps {

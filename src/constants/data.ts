@@ -77,6 +77,21 @@ export const projects: Record<
       image: "/projects/steam.jpg",
     },
     {
+      title: "TG Claude Bot",
+      description:
+        "Telegram bot bridging chats to Claude Code on a home PC — currently building it with a friend, vibe-coding style. Event-driven (spawns claude --print --resume per message), SQLite session store, owner-only access. Lets us drive coding sessions across projects right from the phone.",
+      tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
+      image: "/projects/tg-claude.jpg",
+    },
+    {
+      title: "TGStats",
+      description:
+        "Local-first Telegram export analyzer. Drop in a result.json or DataExport_* folder — get heatmaps, top words/emoji, achievements, and shareable 1080×1920 story cards. Parsing runs entirely in-browser, files never leave your machine.",
+      tags: ["Next.js 16", "TypeScript", "Tailwind 4", "Framer Motion", "Docker"],
+      link: "https://tg.pippsza.dev",
+      image: "/projects/tgstats.jpg",
+    },
+    {
       title: "Homework Bot",
       description:
         "AI-powered Telegram bot that helps students with homework. Uses artificial intelligence to analyze tasks and provide helpful explanations.",
@@ -87,7 +102,7 @@ export const projects: Record<
     {
       title: "Wishlist Bot",
       description:
-        "Telegram bot for creating and managing wishlists. Share your wishes with friends and family, track gift ideas.",
+        "Simple but complete Telegram bot for creating and managing wishlists. Share wishes with friends and family, track gift ideas.",
       tags: ["TypeScript", "Telegram Bot API", "Node.js", "MongoDB"],
       link: "https://t.me/w_ishlist_bot",
       github: "https://github.com/pippsza/telegram-wishlist",
@@ -114,6 +129,21 @@ export const projects: Record<
       image: "/projects/steam.jpg",
     },
     {
+      title: "TG Claude Bot",
+      description:
+        "Telegram-бот, який з'єднує чати з Claude Code на домашньому ПК — зараз вайбкодимо з другом. Event-driven (claude --print --resume на кожне повідомлення), SQLite-сховище сесій, owner-only доступ. Дозволяє вести coding-сесії в різних проєктах прямо з телефона.",
+      tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
+      image: "/projects/tg-claude.jpg",
+    },
+    {
+      title: "TGStats",
+      description:
+        "Local-first аналізатор Telegram-експортів. Перетягни result.json або папку DataExport_* — отримай heatmaps, топ слів/емодзі, ачивки та shareable story-карточки 1080×1920. Парсинг повністю у браузері — файли нікуди не йдуть.",
+      tags: ["Next.js 16", "TypeScript", "Tailwind 4", "Framer Motion", "Docker"],
+      link: "https://tg.pippsza.dev",
+      image: "/projects/tgstats.jpg",
+    },
+    {
       title: "Homework Bot",
       description:
         "Telegram бот на основі ШІ, що допомагає студентам з домашніми завданнями. Використовує штучний інтелект для аналізу завдань та надання пояснень.",
@@ -124,7 +154,7 @@ export const projects: Record<
     {
       title: "Wishlist Bot",
       description:
-        "Telegram бот для створення та управління списками бажань. Діліться бажаннями з друзями та родиною, відстежуйте ідеї подарунків.",
+        "Простий, але повністю готовий Telegram-бот для створення та управління списками бажань. Діліться з друзями та родиною, відстежуйте ідеї подарунків.",
       tags: ["TypeScript", "Telegram Bot API", "Node.js", "MongoDB"],
       link: "https://t.me/w_ishlist_bot",
       github: "https://github.com/pippsza/telegram-wishlist",
@@ -151,6 +181,21 @@ export const projects: Record<
       image: "/projects/steam.jpg",
     },
     {
+      title: "TG Claude Bot",
+      description:
+        "Telegram-бот, соединяющий чаты с Claude Code на домашнем ПК — сейчас вайбкодим с другом. Event-driven (claude --print --resume на каждое сообщение), SQLite-хранилище сессий, owner-only доступ. Позволяет вести coding-сессии в разных проектах прямо с телефона.",
+      tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
+      image: "/projects/tg-claude.jpg",
+    },
+    {
+      title: "TGStats",
+      description:
+        "Local-first анализатор Telegram-экспортов. Перетащил result.json или папку DataExport_* — получил heatmaps, топ слов/эмодзи, ачивки и shareable story-карточки 1080×1920. Парсинг полностью в браузере — файлы никуда не уходят.",
+      tags: ["Next.js 16", "TypeScript", "Tailwind 4", "Framer Motion", "Docker"],
+      link: "https://tg.pippsza.dev",
+      image: "/projects/tgstats.jpg",
+    },
+    {
       title: "Homework Bot",
       description:
         "Telegram бот на основе ИИ, помогающий студентам с домашними заданиями. Использует искусственный интеллект для анализа задач и предоставления объяснений.",
@@ -161,7 +206,7 @@ export const projects: Record<
     {
       title: "Wishlist Bot",
       description:
-        "Telegram бот для создания и управления списками желаний. Делитесь желаниями с друзьями и семьёй, отслеживайте идеи подарков.",
+        "Простой, но полностью готовый Telegram-бот для списков желаний. Делитесь желаниями с друзьями и семьёй, отслеживайте идеи подарков.",
       tags: ["TypeScript", "Telegram Bot API", "Node.js", "MongoDB"],
       link: "https://t.me/w_ishlist_bot",
       github: "https://github.com/pippsza/telegram-wishlist",
@@ -173,33 +218,46 @@ export const projects: Record<
 // Skills categorized
 export const skills = {
   Frontend: [
-    { name: "JavaScript", iconName: "FileJson" },
     { name: "TypeScript", iconName: "Code2" },
+    { name: "JavaScript", iconName: "FileJson" },
     { name: "React", iconName: "Atom" },
     { name: "Next.js", iconName: "Layers" },
-    { name: "React Native", iconName: "Smartphone" },
     { name: "Tailwind CSS", iconName: "Palette" },
-    { name: "Preact", iconName: "Zap" },
+    { name: "shadcn/Radix", iconName: "Component" },
+    { name: "React Hook Form + Zod", iconName: "ShieldCheck" },
+    { name: "Zustand", iconName: "Boxes" },
+    { name: "React Native", iconName: "Smartphone" },
   ],
   Backend: [
     { name: "Node.js", iconName: "Server" },
+    { name: "Payload CMS", iconName: "Database" },
+    { name: "MongoDB", iconName: "Database" },
+    { name: "Mongoose", iconName: "Database" },
+    { name: "NextAuth", iconName: "ShieldCheck" },
+    { name: "Stripe", iconName: "CreditCard" },
+    { name: "REST API", iconName: "Globe" },
+    { name: "Telegram Bot", iconName: "Bot" },
     { name: "Express.js", iconName: "Zap" },
     { name: "Python", iconName: "Code2" },
-    { name: "Telegram Bot", iconName: "Bot" },
-    { name: "Payload CMS", iconName: "Database" },
-    { name: "REST API", iconName: "Globe" },
-    { name: "GraphQL", iconName: "Network" },
-    { name: "MongoDB", iconName: "Database" },
-    { name: "PostgreSQL", iconName: "Database" },
+  ],
+  "AI & LLM": [
+    { name: "Vercel AI SDK", iconName: "Sparkles" },
+    { name: "OpenAI", iconName: "Brain" },
+    { name: "Anthropic", iconName: "Bot" },
+    { name: "Qdrant", iconName: "Network" },
   ],
   "DevOps/Tools": [
     { name: "Docker", iconName: "Container" },
     { name: "GitHub Actions", iconName: "GitBranch" },
-    { name: "VPS Deployment", iconName: "Cloud" },
+    { name: "Nginx", iconName: "Server" },
+    { name: "Watchtower", iconName: "RefreshCw" },
     { name: "CI/CD", iconName: "RefreshCw" },
     { name: "Git", iconName: "GitBranch" },
     { name: "Linux", iconName: "Terminal" },
-    { name: "Figma", iconName: "Figma" },
+  ],
+  Testing: [
+    { name: "Vitest", iconName: "FlaskConical" },
+    { name: "Playwright", iconName: "Drama" },
   ],
 };
 
@@ -245,60 +303,79 @@ export interface Experience {
 export const experience: Record<Locale, Experience[]> = {
   en: [
     {
-      company: "Cyber Pioneers inc.",
+      company: "Cyber Pioneers Inc.",
       position: "Full Stack Developer",
-      period: "2025 - Present",
+      period: "Jul 2025 — Present",
       location: "Remote",
       description:
-        "Developing and maintaining web applications using modern technologies. Building scalable APIs and implementing responsive user interfaces.",
+        "Ship production features across the company's SaaS product suite — 700+ commits in 10 months. Built plan-gated Stripe subscriptions, AI features via Vercel AI SDK (OpenAI, Anthropic, ElevenLabs), and vector search with Qdrant. Self-manage 4 VPS (Docker, Nginx, GitHub Actions CI/CD). Mentor 2 junior developers.",
       technologies: [
         "Next.js",
-
         "TypeScript",
-        "MongoDB",
         "Payload CMS",
+        "MongoDB",
+        "Stripe",
+        "Vercel AI SDK",
         "Docker",
+        "GitHub Actions",
       ],
     },
-    // Add more experience entries here
   ],
   uk: [
     {
-      company: "Cyber Pioneers inc.",
-      position: "Full Stack Розробник",
-      period: "2025 - Теперішній час",
+      company: "Cyber Pioneers Inc.",
+      position: "Fullstack-розробник",
+      period: "Липень 2025 — дотепер",
       location: "Віддалено",
       description:
-        "Розробка та підтримка веб-додатків з використанням сучасних технологій. Створення масштабованих API та реалізація адаптивних інтерфейсів.",
+        "Розробляю production-фічі для SaaS-продуктів компанії — 700+ комітів за 10 місяців. Реалізував plan-gated підписки на Stripe, AI-фічі через Vercel AI SDK (OpenAI, Anthropic, ElevenLabs) та vector search через Qdrant. Самостійно адмініструю 4 VPS (Docker, Nginx, GitHub Actions CI/CD). Менторю 2 junior-розробників.",
       technologies: [
         "Next.js",
-
         "TypeScript",
-        "MongoDB",
         "Payload CMS",
+        "MongoDB",
+        "Stripe",
+        "Vercel AI SDK",
         "Docker",
+        "GitHub Actions",
       ],
     },
-    // Додайте більше записів досвіду тут
   ],
   ru: [
     {
-      company: "Cyber Pioneers inc.",
-      position: "Full Stack Разработчик",
-      period: "2025 - Настоящее время",
-      location: "Удаленно",
+      company: "Cyber Pioneers Inc.",
+      position: "Full-Stack Разработчик",
+      period: "Июль 2025 — настоящее время",
+      location: "Удалённо",
       description:
-        "Разработка и поддержка веб-приложений с использованием современных технологий. Создание масштабируемых API и реализация адаптивных интерфейсов.",
+        "Разрабатываю production-фичи для SaaS-продуктов компании — 700+ коммитов за 10 месяцев. Реализовал plan-gated подписки на Stripe, AI-фичи через Vercel AI SDK (OpenAI, Anthropic, ElevenLabs) и vector search через Qdrant. Самостоятельно администрирую 4 VPS (Docker, Nginx, GitHub Actions CI/CD). Менторю 2 junior-разработчиков.",
       technologies: [
         "Next.js",
-
         "TypeScript",
-        "MongoDB",
         "Payload CMS",
+        "MongoDB",
+        "Stripe",
+        "Vercel AI SDK",
         "Docker",
+        "GitHub Actions",
       ],
     },
   ],
+};
+
+// CV / Resume download links — public/cv/*
+// RU локаль использует EN-версию как fallback (русской версии пока нет).
+export const cvLinks: Record<Locale, string> = {
+  en: "/cv/Bohdan_Astakhov_CV_EN.pdf",
+  uk: "/cv/Bohdan_Astakhov_CV_UK.pdf",
+  ru: "/cv/Bohdan_Astakhov_CV_EN.pdf",
+};
+
+// First-page preview images for the Resume section — public/cv/*
+export const cvPreviews: Record<Locale, string> = {
+  en: "/cv/preview_en.jpg",
+  uk: "/cv/preview_uk.jpg",
+  ru: "/cv/preview_en.jpg",
 };
 
 // Dictionary for UI labels
@@ -316,14 +393,21 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     greeting: "Hi, I'm",
     role: "Full Stack Developer",
     heroDescription:
-      "I build modern web and mobile applications with cutting-edge technologies. Specializing in React, Next.js, and cloud-native solutions.",
+      "Full-stack developer shipping production SaaS with Next.js, Payload CMS and TypeScript — Stripe billing, AI integrations, and the VPS infrastructure it all runs on.",
     contactMe: "Contact Me",
     viewProjects: "View Projects",
+    downloadCV: "Download CV",
 
     // About Section
     aboutTitle: "About Me",
     aboutDescription:
-      "Passionate full-stack developer with expertise in modern web technologies. I create scalable, performant applications that deliver exceptional user experiences.",
+      "Full-stack developer at Cyber Pioneers, focused on TypeScript, Next.js and Payload CMS. In under a year I've shipped 5+ production SaaS products — plan-gated Stripe billing, AI features via the Vercel AI SDK, and Qdrant vector search — and I run the Docker/Nginx infrastructure behind them. I mentor two junior developers and ship at a high, steady pace.",
+
+    // Resume Section
+    resumeTitle: "My Resume",
+    resumeDescription:
+      "A one-page snapshot of my experience, stack and selected projects.",
+    openResume: "Open full PDF",
 
     // Projects Section
     projectsTitle: "Featured Projects",
@@ -373,14 +457,21 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     greeting: "Привіт, я",
     role: "Full Stack Розробник",
     heroDescription:
-      "Я створюю сучасні веб та мобільні додатки з використанням передових технологій. Спеціалізуюся на React, Next.js та хмарних рішеннях.",
+      "Fullstack-розробник, який доставляє production-SaaS на Next.js, Payload CMS і TypeScript — Stripe-білінг, AI-інтеграції та VPS-інфраструктура, на якій усе це працює.",
     contactMe: "Зв'язатися",
     viewProjects: "Переглянути проєкти",
+    downloadCV: "Завантажити CV",
 
     // About Section
     aboutTitle: "Про мене",
     aboutDescription:
-      "Пристрасний full-stack розробник з експертизою в сучасних веб-технологіях. Я створюю масштабовані, продуктивні додатки, які забезпечують виняткові користувацькі враження.",
+      "Fullstack-розробник у Cyber Pioneers, фокус на TypeScript, Next.js і Payload CMS. Менш ніж за рік випустив 5+ production-SaaS — plan-gated Stripe-білінг, AI-фічі через Vercel AI SDK і vector search на Qdrant — та сам адмініструю Docker/Nginx-інфраструктуру під ними. Менторю двох junior-розробників і тримаю високий стабільний темп.",
+
+    // Resume Section
+    resumeTitle: "Моє резюме",
+    resumeDescription:
+      "Одна сторінка — досвід, стек і обрані проєкти.",
+    openResume: "Відкрити повний PDF",
 
     // Projects Section
     projectsTitle: "Обрані проєкти",
@@ -430,14 +521,21 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     greeting: "Привет, я",
     role: "Full Stack Разработчик",
     heroDescription:
-      "Я создаю современные веб и мобильные приложения с использованием передовых технологий. Специализируюсь на React, Next.js и облачных решениях.",
+      "Fullstack-разработчик, выкатываю production-SaaS на Next.js, Payload CMS и TypeScript — Stripe-биллинг, AI-интеграции и VPS-инфраструктура, на которой всё это крутится.",
     contactMe: "Связаться",
     viewProjects: "Посмотреть проекты",
+    downloadCV: "Скачать CV",
 
     // About Section
     aboutTitle: "Обо мне",
     aboutDescription:
-      "Увлеченный full-stack разработчик с экспертизой в современных веб-технологиях. Я создаю масштабируемые, производительные приложения, которые обеспечивают исключительные пользовательские впечатления.",
+      "Fullstack-разработчик в Cyber Pioneers, фокус на TypeScript, Next.js и Payload CMS. Меньше чем за год выпустил 5+ production-SaaS — plan-gated Stripe-биллинг, AI-фичи через Vercel AI SDK и vector search на Qdrant — и сам администрирую Docker/Nginx-инфраструктуру под ними. Менторю двух junior-разработчиков и держу высокий стабильный темп.",
+
+    // Resume Section
+    resumeTitle: "Моё резюме",
+    resumeDescription:
+      "Одна страница — опыт, стек и избранные проекты.",
+    openResume: "Открыть полный PDF",
 
     // Projects Section
     projectsTitle: "Избранные проекты",
