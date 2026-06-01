@@ -2,7 +2,6 @@
 import type { Locale } from '../constants/data';
 import { dictionary } from '../constants/data';
 import BaseHead from '../components/BaseHead.astro';
-import ThemeToggle from '../components/ThemeToggle';
 import LanguagePicker from '../components/LanguagePicker';
 import Icon from '../components/Icon';
 import '../styles/global.css';
@@ -23,22 +22,6 @@ const t = dictionary[lang];
     <BaseHead title={title} description={description} lang={lang} />
   </head>
   <body>
-    <!-- Global rain animation -->
-    <div class="rain-container">
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-      <div class="rain-line"></div>
-    </div>
-
     <!-- Header / Navigation -->
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-bg-dark/80 border-b border-border/30">
       <nav class="container mx-auto px-6 py-4">
@@ -58,6 +41,9 @@ const t = dictionary[lang];
             <a href={`/${lang}/#about`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
               {t.about}
             </a>
+            <a href={`/${lang}/#resume`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
+              {t.resume}
+            </a>
             <a href={`/${lang}/#experience`} class="px-4 py-2 rounded-lg text-text-muted hover:text-accent hover:bg-surface/50 transition-all duration-300 text-sm font-medium">
               {t.experience}
             </a>
@@ -75,7 +61,6 @@ const t = dictionary[lang];
           <!-- Actions -->
           <div class="flex items-center gap-2">
             <LanguagePicker client:load currentLang={lang} currentPath={Astro.url.pathname} />
-            <ThemeToggle client:load />
           </div>
         </div>
       </nav>
@@ -115,5 +100,56 @@ const t = dictionary[lang];
         </div>
       </div>
     </footer>
+
+    <!-- Signature motion: smooth scroll + magnetic CTAs (respects reduced-motion) -->
+    <script>
+      import Lenis from 'lenis';
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let lenis: any = null;
+
+      if (!reduce) {
+        lenis = new Lenis({
+          duration: 1.1,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+        const raf = (time: number) => {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+      }
+
+      // In-page anchor links scroll smoothly through Lenis
+      document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const url = new URL(a.href, window.location.href);
+          if (url.pathname !== window.location.pathname) return;
+          const target = document.querySelector(url.hash);
+          if (!target) return;
+          e.preventDefault();
+          if (lenis) lenis.scrollTo(target as HTMLElement, { offset: -80 });
+          else (target as HTMLElement).scrollIntoView();
+          history.replaceState(null, '', url.hash);
+        });
+      });
+
+      // Magnetic buttons — gently pull toward the cursor
+      if (!reduce) {
+        document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+          const strength = 0.3;
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+          });
+          el.addEventListener('mouseleave', () => {
+            el.style.transform = 'translate(0, 0)';
+          });
+        });
+      }
+    </script>
   </body>
 </html>

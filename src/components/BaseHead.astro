@@ -14,7 +14,7 @@ const { title: rawTitle, description: rawDescription, lang, canonical, image } =
 // Use your real site URL so OG tags point to absolute URLs
 const siteUrl = 'https://pippsza.dev';
 const defaultTitle = 'Pippsza — Full Stack Developer Portfolio';
-const defaultDescription = 'Portfolio of Astakhov Bohdan (pippsza) — Full Stack developer from Zmiiv, Ukraine. I build modern web and mobile applications using Astro, Preact and Tailwind CSS.';
+const defaultDescription = 'Portfolio of Astakhov Bohdan (pippsza) — Full-Stack developer based in Kharkiv, Ukraine. Production SaaS with Next.js, Payload CMS, TypeScript, Stripe and AI integrations.';
 
 const title = rawTitle || defaultTitle;
 const description = rawDescription || defaultDescription;
@@ -72,24 +72,16 @@ const langMap: Record<Locale, string> = {
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- Fonts - Inter -->
+<!-- Fonts — Inter (body) + Space Grotesk (display) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
 <!-- Theme and Language Detection Script - Runs before page render -->
 <script is:inline>
-  // Theme detection
-  const getThemePreference = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-  };
-  
-  const theme = getThemePreference();
-  document.documentElement.setAttribute('data-theme', theme);
-  
+  // Single theme — always dark (toggle removed). Override any stale pref.
+  document.documentElement.setAttribute('data-theme', 'dark');
+
   // Language detection and redirect (only on root path)
   if (window.location.pathname === '/') {
     const browserLang = navigator.language.toLowerCase();

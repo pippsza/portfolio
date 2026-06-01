@@ -79,7 +79,7 @@ export const projects: Record<
     {
       title: "TG Claude Bot",
       description:
-        "Telegram bot bridging chats to Claude Code on a home PC — currently building it with a friend, vibe-coding style. Event-driven (spawns claude --print --resume per message), SQLite session store, owner-only access. Lets us drive coding sessions across projects right from the phone.",
+        "Telegram bot bridging chats to Claude Code on a home PC — an active personal project. Event-driven (spawns claude --print --resume per message), SQLite session store, owner-only access. Lets me drive coding sessions across projects right from the phone.",
       tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
       image: "/projects/tg-claude.jpg",
     },
@@ -131,7 +131,7 @@ export const projects: Record<
     {
       title: "TG Claude Bot",
       description:
-        "Telegram-бот, який з'єднує чати з Claude Code на домашньому ПК — зараз вайбкодимо з другом. Event-driven (claude --print --resume на кожне повідомлення), SQLite-сховище сесій, owner-only доступ. Дозволяє вести coding-сесії в різних проєктах прямо з телефона.",
+        "Telegram-бот, який з'єднує чати з Claude Code на домашньому ПК — активний особистий проєкт. Event-driven (claude --print --resume на кожне повідомлення), SQLite-сховище сесій, owner-only доступ. Дозволяє вести coding-сесії в різних проєктах прямо з телефона.",
       tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
       image: "/projects/tg-claude.jpg",
     },
@@ -183,7 +183,7 @@ export const projects: Record<
     {
       title: "TG Claude Bot",
       description:
-        "Telegram-бот, соединяющий чаты с Claude Code на домашнем ПК — сейчас вайбкодим с другом. Event-driven (claude --print --resume на каждое сообщение), SQLite-хранилище сессий, owner-only доступ. Позволяет вести coding-сессии в разных проектах прямо с телефона.",
+        "Telegram-бот, соединяющий чаты с Claude Code на домашнем ПК — активный личный проект. Event-driven (claude --print --resume на каждое сообщение), SQLite-хранилище сессий, owner-only доступ. Позволяет вести coding-сессии в разных проектах прямо с телефона.",
       tags: ["Python", "Telegram Bot API", "Claude Code", "SQLite", "WIP"],
       image: "/projects/tg-claude.jpg",
     },
@@ -363,6 +363,28 @@ export const experience: Record<Locale, Experience[]> = {
   ],
 };
 
+// Stats band — stable, verifiable numbers (no time-relative values that age)
+export const stats: Record<Locale, Array<{ value: string; label: string }>> = {
+  en: [
+    { value: "5+", label: "Production SaaS shipped" },
+    { value: "8+", label: "Payload CMS projects" },
+    { value: "4", label: "VPS self-managed" },
+    { value: "90+", label: "GitHub repositories" },
+  ],
+  uk: [
+    { value: "5+", label: "Production-SaaS випущено" },
+    { value: "8+", label: "Payload CMS проєктів" },
+    { value: "4", label: "VPS під управлінням" },
+    { value: "90+", label: "GitHub репозиторіїв" },
+  ],
+  ru: [
+    { value: "5+", label: "Production-SaaS выпущено" },
+    { value: "8+", label: "Payload CMS проектов" },
+    { value: "4", label: "VPS под управлением" },
+    { value: "90+", label: "GitHub репозиториев" },
+  ],
+};
+
 // CV / Resume download links — public/cv/*
 // RU локаль использует EN-версию как fallback (русской версии пока нет).
 export const cvLinks: Record<Locale, string> = {
@@ -384,6 +406,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Home",
     about: "About",
+    resume: "Resume",
     experience: "Experience",
     projects: "Projects",
     skills: "Skills",
@@ -448,6 +471,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Головна",
     about: "Про мене",
+    resume: "Резюме",
     experience: "Досвід",
     projects: "Проєкти",
     skills: "Навички",
@@ -512,6 +536,7 @@ export const dictionary: Record<Locale, Record<string, string>> = {
     // Navigation
     home: "Главная",
     about: "Обо мне",
+    resume: "Резюме",
     experience: "Опыт",
     projects: "Проекты",
     skills: "Навыки",

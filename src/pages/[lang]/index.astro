@@ -3,7 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import { dictionary, projects, skills, socials, experience, cvLinks, cvPreviews, type Locale } from '../../constants/data';
 import Icon from '../../components/Icon';
 import DevOpsPipeline from '../../components/DevOpsPipeline';
-import SkillsCarousel from '../../components/SkillsCarousel';
 import ProjectCard from '../../components/ProjectCard';
 import ExperienceCard from '../../components/ExperienceCard';
 
@@ -21,6 +20,7 @@ const localizedProjects = projects[lang];
 const localizedExperience = experience[lang];
 const cvHref = cvLinks[lang];
 const cvPreview = cvPreviews[lang];
+const projectIcons = ['Rocket', 'Sparkles', 'Bot', 'Network', 'Brain', 'Send'];
 ---
 
 <Layout title={`Astakhov Bohdan | pippsza - Full Stack Developer`} description={`${t.heroDescription} | Portfolio of Astakhov Bohdan (@pippsza)`} lang={lang}>
@@ -29,21 +29,18 @@ const cvPreview = cvPreviews[lang];
     <div class="container mx-auto relative z-10">
       <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
 
-        <!-- Photo Circle -->
-        <div class="relative animate-fade-in-up order-1 lg:order-2" style="animation-delay: 0.2s;">
-          <div class="photo-circle">
+        <!-- Photo -->
+        <div class="relative animate-fade-in-up order-1 lg:order-2" style="animation-delay: 0.15s;">
+          <div class="hero-photo-glow"></div>
+          <div class="hero-photo">
             <img
               src="/avatar.jpg"
               alt="Astakhov Bohdan"
-              width="200"
-              height="200"
+              width="300"
+              height="300"
               loading="eager"
-              class="w-full h-full object-cover"
             />
           </div>
-          <!-- Decorative rings -->
-          <div class="absolute -inset-4 border border-accent/20 rounded-full animate-pulse-glow" style="animation-duration: 3s;" />
-          <div class="absolute -inset-8 border border-accent/10 rounded-full" />
         </div>
 
         <!-- Text Content -->
@@ -66,6 +63,7 @@ const cvPreview = cvPreviews[lang];
           <div class="grid grid-rows-3 sm:flex sm:flex-wrap w-full gap-4 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 0.3s;">
             <a
               href={`/${lang}/#contact`}
+              data-magnetic
               class="inline-flex w-full sm:w-fit items-center gap-2 px-6 py-3 rounded-lg bg-accent text-surface font-semibold
                      hover:bg-accent-hover transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 btn-hover"
             >
@@ -115,12 +113,6 @@ const cvPreview = cvPreviews[lang];
         </div>
       </div>
 
-      <!-- Scroll indicator -->
-      <div class="hidden lg:block  absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-subtle">
-        <div class="w-6 h-10 rounded-full border-2 border-border/50 flex items-start justify-center p-2">
-          <div class="w-1 h-2 rounded-full bg-accent animate-pulse" />
-        </div>
-      </div>
     </div>
   </section>
 
@@ -245,6 +237,7 @@ const cvPreview = cvPreviews[lang];
             project={project}
             viewProject={t.viewProject}
             viewCode={t.viewCode}
+            iconName={projectIcons[index] ?? 'Layers'}
             index={index}
             client:load
           />
@@ -267,16 +260,28 @@ const cvPreview = cvPreviews[lang];
       </div>
     </div>
 
-    <!-- Full width carousels -->
-    <div class="space-y-6">
-      {Object.entries(skills).map(([category, skillList], index) => (
-        <SkillsCarousel
-          skills={skillList}
-          category={category}
-          speed={20 + index * 5}
-          client:load
-        />
-      ))}
+    <!-- Static skill grid -->
+    <div class="container mx-auto px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {Object.entries(skills).map(([category, skillList], index) => (
+          <div
+            class="reveal rounded-2xl border border-border/60 bg-surface/40 p-6 backdrop-blur-sm hover-lift"
+            style={`--reveal-delay:${index * 70}ms`}
+          >
+            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
+              {category}
+            </h3>
+            <div class="flex flex-wrap gap-2.5">
+              {skillList.map((skill) => (
+                <span class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium text-text-dark">
+                  <span class="text-accent flex items-center"><Icon name={skill.iconName} size={16} /></span>
+                  {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

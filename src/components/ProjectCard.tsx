@@ -13,6 +13,7 @@ interface ProjectCardProps {
   project: Project;
   viewProject: string;
   viewCode: string;
+  iconName?: string;
   index: number;
 }
 
@@ -20,6 +21,7 @@ export default function ProjectCard({
   project,
   viewProject,
   viewCode,
+  iconName = "Layers",
   index,
 }: ProjectCardProps) {
   return (
@@ -48,7 +50,7 @@ export default function ProjectCard({
           {/* Title with icon */}
           <div class="flex items-start gap-3">
             <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors duration-300">
-              <Icon name="Layers" size={20} class="text-accent" />
+              <Icon name={iconName} size={20} class="text-accent" />
             </div>
             <h3 class="text-xl md:text-2xl font-bold text-text-dark group-hover:text-accent transition-colors duration-300 pt-1">
               {project.title}
