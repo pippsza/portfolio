@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 \usepackage[a4paper,margin=0pt]{geometry}
 \usepackage{fontspec}
@@ -30,8 +30,6 @@
 \definecolor{lightgray}{HTML}{D1D5DB}
 \definecolor{sidebartext}{HTML}{E5E7EB}
 \definecolor{sidebardim}{HTML}{9CA3AF}
-\definecolor{pillbg}{HTML}{EFF6FF}
-\definecolor{pillborder}{HTML}{BFDBFE}
 
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 
@@ -43,129 +41,41 @@
 \emergencystretch=2em
 \hyphenpenalty=2000
 
-\newcommand{\sidebarwidth}{5.5cm}
+\newcommand{\sidebarwidth}{5.8cm}
 
+% Dark sidebar fill on the LEFT
 \AddToShipoutPictureBG*{%
   \begin{tikzpicture}[remember picture, overlay]
-    \fill[sidebar] ([xshift=-\sidebarwidth]current page.north east) rectangle (current page.south east);
+    \fill[sidebar] (current page.north west) rectangle ([xshift=\sidebarwidth]current page.south west);
   \end{tikzpicture}%
 }
 
 \titleformat{\section}
   {\large\bfseries\color{accent}}{}{0em}{}
   [{\vspace{-2pt}\color{lightgray}\titlerule[0.5pt]}]
-\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
 
-\setlist[itemize]{leftmargin=12pt, itemsep=1pt, topsep=1pt, parsep=0pt, label=\textcolor{accent}{\textbullet}}
+\setlist[itemize]{leftmargin=12pt, itemsep=2pt, topsep=1pt, parsep=0pt, label=\textcolor{accent}{\textbullet}}
 
 \newcommand{\sbsection}[1]{%
-  \vspace{10pt}\par%
+  \vspace{12pt}\par%
   {\color{accentLite}\normalsize\bfseries\MakeUppercase{#1}}\par%
   \vspace{2pt}%
   {\color{accent!60}\rule{\linewidth}{0.4pt}}\par%
   \vspace{4pt}%
 }
 
+\newcommand{\sbcat}[1]{%
+  \vspace{5pt}\par%
+  {\color{accentLite}\bfseries #1}\par\vspace{1pt}%
+}
+
 \newcommand{\sblink}[2]{\href{#1}{\color{sidebartext}#2}}
-
-\newcommand{\statbox}[2]{%
-  \begin{tabular}{@{}c@{}}
-    {\Large\bfseries\color{accent} #1}\\[1pt]
-    {\footnotesize\color{midgray} #2}
-  \end{tabular}%
-}
-
-\newcommand{\pill}[1]{%
-  \tikz[baseline=(t.base)]{%
-    \node[draw=pillborder, fill=pillbg, rounded corners=3pt,
-          inner xsep=5pt, inner ysep=2pt, text=darkgray]
-    (t) {\footnotesize #1};%
-  }\hspace{2pt}%
-}
-
-\newcommand{\techcat}[1]{%
-  \par\vspace{3pt}%
-  {\footnotesize\color{midgray}\bfseries\MakeUppercase{#1}}\par\vspace{2pt}%
-}
 
 \begin{document}
 
 \noindent
-% ============ LEFT MAIN ============
-\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth\relax}
-\vspace*{1.1cm}\hspace{1.2cm}%
-\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth-1.8cm\relax}
-
-{\Huge\bfseries\color{darkgray}Богдан Астахов}\par
-\vspace{3pt}
-{\large\color{midgray}Fullstack-разработчик}\par
-\vspace{6pt}
-{\color{accent}\rule{\linewidth}{1.2pt}}
-
-\section*{Профиль}
-Fullstack-разработчик, специализация — \textbf{Payload CMS}, Stripe-биллинг
-и AI-интеграции для SaaS-платформ.
-
-\section*{Опыт}
-
-{\bfseries Fullstack-разработчик} \hfill {\color{midgray}\small Июль 2025 — настоящее время}\par
-{\itshape Cyber Pioneers Inc.} \hfill {\color{midgray}\small Удалённо}
-\begin{itemize}
-  \item Разрабатывал end-to-end продуктовые фичи в SaaS-сюите —
-        \textbf{B2B AutoTech (управление body-shop), internal HR/finance
-        ops с AI, marketing automation} — владение UI, API, схемой
-        и деплоем.
-  \item Построил plan-gated Stripe-подписки, питающие платные тарифы
-        в сюите.
-  \item Интегрировал AI-фичи через Vercel AI SDK (OpenAI, Anthropic,
-        ElevenLabs) — agent evaluations, генерация контента,
-        voice synthesis.
-  \item Добавил Qdrant-backed semantic search вместо keyword matching
-        для AI-рекомендаций.
-  \item Владею production-деплоем на нескольких VPS — Docker, Nginx,
-        GitHub Actions CI/CD, Watchtower auto-deploy.
-  \item Участвую в код-ревью; декомпозирую фичи с PM; поддерживаю
-        онбординг новых сотрудников.
-\end{itemize}
-
-\section*{Tech Stack}
-
-\techcat{Языки}
-\pill{TypeScript}\pill{JavaScript}\pill{Python}\pill{Bash}
-
-\techcat{Frontend}
-\pill{Next.js}\pill{React}\pill{Tailwind}\pill{shadcn/Radix}\pill{Zustand}
-
-\techcat{Backend}
-\pill{Payload CMS}\pill{Node.js}\pill{MongoDB}\pill{NextAuth}\pill{Stripe API}
-
-\techcat{AI \& LLM}
-\pill{Vercel AI SDK}\pill{OpenAI}\pill{Anthropic}\pill{ElevenLabs}\pill{Qdrant}
-
-\techcat{DevOps}
-\pill{Docker}\pill{GitHub Actions}\pill{Nginx}\pill{Watchtower}\pill{Linux}
-
-\section*{Избранные проекты}
-
-{\bfseries DDNet Bingo} \quad \href{https://github.com/pippsza/ddnet}{\color{accent}\small github.com/pippsza/ddnet}\par
-\vspace{2pt}
-Bingo- и race-платформа с Telegram-ботом-компаньоном для сообщества
-DDraceNetwork. Next.js + Payload CMS. Кастомный Docker-сетап спавнит
-контейнеры Teeworlds-серверов на игру прямо из основного приложения
-(Docker-out-of-Docker) с native SQLite3 rebuild. Playwright e2e.
-Работает на \href{https://bingo.pippsza.dev}{bingo.pippsza.dev}.
-
-\vspace{6pt}
-{\bfseries Steam Diploma} \quad \href{https://github.com/pippsza/steam-diploma}{\color{accent}\small github.com/pippsza/steam-diploma}\par
-\vspace{2pt}
-Steam-вдохновлённая платформа с AI-рекомендациями на базе RAG (Vercel AI
-SDK поверх embedding-based retrieval). Next.js + MongoDB. Работает на
-\href{https://sen.pippsza.dev}{sen.pippsza.dev}.
-
-\end{minipage}
-\end{minipage}%
-%
-% ============ RIGHT SIDEBAR (DARK) ============
+% ============ LEFT SIDEBAR (DARK) ============
 \begin{minipage}[t]{\sidebarwidth}
 \color{sidebartext}
 \vspace*{1.1cm}\hspace{0.7cm}%
@@ -188,10 +98,23 @@ SDK поверх embedding-based retrieval). Next.js + MongoDB. Работает
 \sbsection{Контакты}
 \faMapMarker*\ \,Харьков, Украина\par\vspace{4pt}
 \faPhone\ \,+380 98 660 1604\par\vspace{4pt}
-\faEnvelope\ \,\sblink{mailto:bastahov16@gmail.com}{bastahov16@gmail.com}\par\vspace{4pt}
+{\footnotesize\faEnvelope\ \,\sblink{mailto:bastahov16@gmail.com}{bastahov16@gmail.com}}\par\vspace{4pt}
 \faGithub\ \,\sblink{https://github.com/pippsza}{github.com/pippsza}\par\vspace{4pt}
 \faLinkedin\ \,\sblink{https://www.linkedin.com/in/bohdan-astakhov-36a95a349/}{bohdan-astakhov}\par\vspace{4pt}
 \faGlobe\ \,\sblink{https://pippsza.dev}{pippsza.dev}
+
+\sbsection{Навыки}
+\sbcat{Языки}
+TypeScript, JavaScript, Python (basic)
+
+\sbcat{Frontend}
+Next.js, React, Tailwind, shadcn/Radix, Zustand
+
+\sbcat{Backend}
+Payload CMS, Node.js, MongoDB, NextAuth, Stripe API
+
+\sbcat{DevOps}
+Docker, GitHub Actions, Nginx, Watchtower, Linux
 
 \sbsection{Образование}
 {\bfseries Степень бакалавра}\par
@@ -199,16 +122,69 @@ SDK поверх embedding-based retrieval). Next.js + MongoDB. Работает
 \vspace{2pt}
 Харьковский НТУ «ХПИ»\par
 {\color{accentLite}2024 — 2028}\par
-\vspace{10pt}
+\vspace{8pt}
 
 {\bfseries IT-школа GoIT}\par
-Front-end Developer · Cybersecurity\par
+Fullstack Developer · Cybersecurity\par
 {\color{accentLite}2024 — 2025}
 
 \sbsection{Языки}
-Английский\ \ {\color{sidebardim}\itshape B2}\par\vspace{4pt}
+Английский\ \ {\color{sidebardim}\itshape B1}\par\vspace{4pt}
 Украинский\ \ {\color{sidebardim}\itshape родной}\par\vspace{4pt}
 Русский\ \ {\color{sidebardim}\itshape родной}
+
+\end{minipage}
+\end{minipage}%
+%
+% ============ RIGHT MAIN ============
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth\relax}
+\vspace*{1.1cm}\hspace{0.6cm}%
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth-1.8cm\relax}
+
+{\Huge\bfseries\color{darkgray}Богдан Астахов}\par
+\vspace{3pt}
+{\large\color{midgray}Fullstack-разработчик · Next.js · Payload CMS}\par
+\vspace{6pt}
+{\color{accent}\rule{\linewidth}{1.2pt}}
+
+\section*{Опыт}
+
+{\bfseries Fullstack-разработчик} \hfill {\color{midgray}\small Июль 2025 — настоящее время}\par
+{\itshape Cyber Pioneers Inc.} \hfill {\color{midgray}\small Удалённо}
+\begin{itemize}
+  \item Разрабатывал end-to-end продуктовые фичи в SaaS-сюите —
+        B2B AutoTech (управление body-shop), internal HR/finance ops
+        с AI, marketing automation — владение UI, API, схемой и
+        деплоем.
+  \item Построил plan-gated Stripe-подписки, питающие платные тарифы
+        в сюите.
+  \item Интегрировал AI-фичи через Vercel AI SDK (OpenAI, Anthropic,
+        ElevenLabs) — agent evaluations, генерация контента,
+        voice synthesis.
+  \item Добавил Qdrant-backed semantic search вместо keyword matching
+        для AI-рекомендаций.
+  \item Владею production-деплоем на нескольких VPS — Docker, Nginx,
+        GitHub Actions CI/CD, Watchtower auto-deploy.
+  \item Участвую в код-ревью; декомпозирую фичи с PM; поддерживаю
+        онбординг новых сотрудников.
+\end{itemize}
+
+\section*{Проекты}
+
+{\bfseries DDNet Bingo} \quad \href{https://github.com/pippsza/ddnet}{\color{accent}\small github.com/pippsza/ddnet}\par
+\vspace{2pt}
+Bingo- и race-платформа с Telegram-ботом-компаньоном для сообщества
+DDraceNetwork. Next.js + Payload CMS. Каждая игра запускается на своём
+выделенном сервере. Playwright e2e.
+Работает на \href{https://bingo.pippsza.dev}{bingo.pippsza.dev}.
+
+\vspace{6pt}
+{\bfseries Alla Studio} \quad \href{https://allastudio.com}{\color{accent}\small allastudio.com}\par
+\vspace{2pt}
+Коммерческий сайт бьюти-студии, сделанный на заказ для реального клиента.
+Next.js + Payload CMS + Tailwind. Кастомная CMS (мастера, услуги, цены,
+отзывы) с ролевым доступом и анимированным 3D-фоном на Three.js. Работает
+на \href{https://allastudio.com}{allastudio.com}.
 
 \end{minipage}
 \end{minipage}

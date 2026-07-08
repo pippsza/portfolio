@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 
 \usepackage[a4paper,margin=0pt]{geometry}
 \usepackage{fontspec}
@@ -27,8 +27,6 @@
 \definecolor{lightgray}{HTML}{D1D5DB}
 \definecolor{sidebartext}{HTML}{E5E7EB}
 \definecolor{sidebardim}{HTML}{9CA3AF}
-\definecolor{pillbg}{HTML}{EFF6FF}
-\definecolor{pillborder}{HTML}{BFDBFE}
 
 \hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
 
@@ -40,132 +38,44 @@
 \emergencystretch=2em
 \hyphenpenalty=2000
 
-\newcommand{\sidebarwidth}{5.5cm}
+\newcommand{\sidebarwidth}{5.8cm}
 
+% Dark sidebar fill on the LEFT
 \AddToShipoutPictureBG*{%
   \begin{tikzpicture}[remember picture, overlay]
-    \fill[sidebar] ([xshift=-\sidebarwidth]current page.north east) rectangle (current page.south east);
+    \fill[sidebar] (current page.north west) rectangle ([xshift=\sidebarwidth]current page.south west);
   \end{tikzpicture}%
 }
 
+% MAIN column section style
 \titleformat{\section}
   {\large\bfseries\color{accent}}{}{0em}{}
   [{\vspace{-2pt}\color{lightgray}\titlerule[0.5pt]}]
-\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
 
-\setlist[itemize]{leftmargin=12pt, itemsep=1pt, topsep=1pt, parsep=0pt, label=\textcolor{accent}{\textbullet}}
+\setlist[itemize]{leftmargin=12pt, itemsep=2pt, topsep=1pt, parsep=0pt, label=\textcolor{accent}{\textbullet}}
 
+% Sidebar section heading
 \newcommand{\sbsection}[1]{%
-  \vspace{10pt}\par%
+  \vspace{12pt}\par%
   {\color{accentLite}\normalsize\bfseries\MakeUppercase{#1}}\par%
   \vspace{2pt}%
   {\color{accent!60}\rule{\linewidth}{0.4pt}}\par%
   \vspace{4pt}%
 }
 
+% Sidebar skills sub-category
+\newcommand{\sbcat}[1]{%
+  \vspace{5pt}\par%
+  {\color{accentLite}\bfseries #1}\par\vspace{1pt}%
+}
+
 \newcommand{\sblink}[2]{\href{#1}{\color{sidebartext}#2}}
-
-% Highlight stat box (used in header row)
-\newcommand{\statbox}[2]{%
-  \begin{tabular}{@{}c@{}}
-    {\Large\bfseries\color{accent} #1}\\[1pt]
-    {\footnotesize\color{midgray} #2}
-  \end{tabular}%
-}
-
-% Pill (tech stack badge in main column)
-\newcommand{\pill}[1]{%
-  \tikz[baseline=(t.base)]{%
-    \node[draw=pillborder, fill=pillbg, rounded corners=3pt,
-          inner xsep=5pt, inner ysep=2pt, text=darkgray]
-    (t) {\footnotesize #1};%
-  }\hspace{2pt}%
-}
-
-% Tech category label inside main column
-\newcommand{\techcat}[1]{%
-  \par\vspace{3pt}%
-  {\footnotesize\color{midgray}\bfseries\MakeUppercase{#1}}\par\vspace{2pt}%
-}
 
 \begin{document}
 
 \noindent
-% ============ LEFT MAIN ============
-\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth\relax}
-\vspace*{1.1cm}\hspace{1.2cm}%
-\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth-1.8cm\relax}
-
-% Name header
-{\Huge\bfseries\color{darkgray}Bohdan Astakhov}\par
-\vspace{3pt}
-{\large\color{midgray}Full-Stack Developer}\par
-\vspace{6pt}
-{\color{accent}\rule{\linewidth}{1.2pt}}
-
-\section*{Profile}
-Full-stack developer specializing in \textbf{Payload CMS}, Stripe billing,
-and AI integrations for SaaS platforms.
-
-\section*{Experience}
-
-{\bfseries Full-Stack Developer} \hfill {\color{midgray}\small July 2025 — Present}\par
-{\itshape Cyber Pioneers Inc.} \hfill {\color{midgray}\small Remote}
-\begin{itemize}
-  \item Shipped product features end-to-end across the SaaS suite —
-        \textbf{B2B AutoTech (body-shop management), internal HR/finance
-        ops with AI, and marketing automation} — owning UI, API, schema,
-        and deployment.
-  \item Built plan-gated Stripe subscription flows powering paid tiers
-        across the suite.
-  \item Integrated AI features through Vercel AI SDK (OpenAI, Anthropic,
-        ElevenLabs) — agent evaluations, content generation, voice synthesis.
-  \item Added Qdrant-backed semantic search, replacing keyword matching
-        for AI-driven recommendations.
-  \item Own production deployment across multiple VPS — Docker, Nginx,
-        GitHub Actions CI/CD, Watchtower auto-deploy.
-  \item Participate in code reviews; scope features with PM; support
-        onboarding of new hires.
-\end{itemize}
-
-\section*{Tech Stack}
-
-\techcat{Languages}
-\pill{TypeScript}\pill{JavaScript}\pill{Python}\pill{Bash}
-
-\techcat{Frontend}
-\pill{Next.js}\pill{React}\pill{Tailwind}\pill{shadcn/Radix}\pill{Zustand}
-
-\techcat{Backend}
-\pill{Payload CMS}\pill{Node.js}\pill{MongoDB}\pill{NextAuth}\pill{Stripe API}
-
-\techcat{AI \& LLM}
-\pill{Vercel AI SDK}\pill{OpenAI}\pill{Anthropic}\pill{ElevenLabs}\pill{Qdrant}
-
-\techcat{DevOps}
-\pill{Docker}\pill{GitHub Actions}\pill{Nginx}\pill{Watchtower}\pill{Linux}
-
-\section*{Selected Projects}
-
-{\bfseries DDNet Bingo} \quad \href{https://github.com/pippsza/ddnet}{\color{accent}\small github.com/pippsza/ddnet}\par
-\vspace{2pt}
-Bingo and race platform with a companion Telegram bot for the DDraceNetwork
-gaming community. Next.js + Payload CMS. Custom Docker setup spawns
-per-game Teeworlds server containers from the main app (Docker-out-of-Docker)
-with native SQLite3 rebuild. Playwright e2e. Live at
-\href{https://bingo.pippsza.dev}{bingo.pippsza.dev}.
-
-\vspace{6pt}
-{\bfseries Steam Diploma} \quad \href{https://github.com/pippsza/steam-diploma}{\color{accent}\small github.com/pippsza/steam-diploma}\par
-\vspace{2pt}
-Steam-inspired content platform with AI-powered recommendations built on
-RAG (Vercel AI SDK over embedding-based retrieval). Next.js + MongoDB.
-Live at \href{https://sen.pippsza.dev}{sen.pippsza.dev}.
-
-\end{minipage}
-\end{minipage}%
-%
-% ============ RIGHT SIDEBAR (DARK) ============
+% ============ LEFT SIDEBAR (DARK) ============
 \begin{minipage}[t]{\sidebarwidth}
 \color{sidebartext}
 \vspace*{1.1cm}\hspace{0.7cm}%
@@ -188,10 +98,23 @@ Live at \href{https://sen.pippsza.dev}{sen.pippsza.dev}.
 \sbsection{Contact}
 \faMapMarker*\ \,Kharkiv, Ukraine\par\vspace{4pt}
 \faPhone\ \,+380 98 660 1604\par\vspace{4pt}
-\faEnvelope\ \,\sblink{mailto:bastahov16@gmail.com}{bastahov16@gmail.com}\par\vspace{4pt}
+{\footnotesize\faEnvelope\ \,\sblink{mailto:bastahov16@gmail.com}{bastahov16@gmail.com}}\par\vspace{4pt}
 \faGithub\ \,\sblink{https://github.com/pippsza}{github.com/pippsza}\par\vspace{4pt}
 \faLinkedin\ \,\sblink{https://www.linkedin.com/in/bohdan-astakhov-36a95a349/}{bohdan-astakhov}\par\vspace{4pt}
 \faGlobe\ \,\sblink{https://pippsza.dev}{pippsza.dev}
+
+\sbsection{Skills}
+\sbcat{Languages}
+TypeScript, JavaScript, Python (basic)
+
+\sbcat{Frontend}
+Next.js, React, Tailwind, shadcn/Radix, Zustand
+
+\sbcat{Backend}
+Payload CMS, Node.js, MongoDB, NextAuth, Stripe API
+
+\sbcat{DevOps}
+Docker, GitHub Actions, Nginx, Watchtower, Linux
 
 \sbsection{Education}
 {\bfseries Bachelor's Degree}\par
@@ -199,16 +122,69 @@ Live at \href{https://sen.pippsza.dev}{sen.pippsza.dev}.
 \vspace{2pt}
 Kharkiv National Polytechnic Univ. (KPI)\par
 {\color{accentLite}2024 — 2028}\par
-\vspace{10pt}
+\vspace{8pt}
 
 {\bfseries GoIT IT School}\par
-Front-end Developer · Cybersecurity\par
+Fullstack Developer · Cybersecurity\par
 {\color{accentLite}2024 — 2025}
 
 \sbsection{Languages}
-English\ \ {\color{sidebardim}\itshape B2}\par\vspace{4pt}
+English\ \ {\color{sidebardim}\itshape B1}\par\vspace{4pt}
 Ukrainian\ \ {\color{sidebardim}\itshape Native}\par\vspace{4pt}
 Russian\ \ {\color{sidebardim}\itshape Native}
+
+\end{minipage}
+\end{minipage}%
+%
+% ============ RIGHT MAIN ============
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth\relax}
+\vspace*{1.1cm}\hspace{0.6cm}%
+\begin{minipage}[t]{\dimexpr\paperwidth-\sidebarwidth-1.8cm\relax}
+
+% Name header
+{\Huge\bfseries\color{darkgray}Bohdan Astakhov}\par
+\vspace{3pt}
+{\large\color{midgray}Full-Stack Developer · Next.js · Payload CMS}\par
+\vspace{6pt}
+{\color{accent}\rule{\linewidth}{1.2pt}}
+
+\section*{Experience}
+
+{\bfseries Full-Stack Developer} \hfill {\color{midgray}\small July 2025 — Present}\par
+{\itshape Cyber Pioneers Inc.} \hfill {\color{midgray}\small Remote}
+\begin{itemize}
+  \item Shipped product features end-to-end across the SaaS suite —
+        B2B AutoTech (body-shop management), internal HR/finance ops
+        with AI, and marketing automation — owning UI, API, schema,
+        and deployment.
+  \item Built plan-gated Stripe subscription flows powering paid tiers
+        across the suite.
+  \item Integrated AI features through Vercel AI SDK (OpenAI, Anthropic,
+        ElevenLabs) — agent evaluations, content generation, voice synthesis.
+  \item Added Qdrant-backed semantic search, replacing keyword matching
+        for AI-driven recommendations.
+  \item Own production deployment across multiple VPS — Docker, Nginx,
+        GitHub Actions CI/CD, Watchtower auto-deploy.
+  \item Participate in code reviews; scope features with PM; support
+        onboarding of new hires.
+\end{itemize}
+
+\section*{Projects}
+
+{\bfseries DDNet Bingo} \quad \href{https://github.com/pippsza/ddnet}{\color{accent}\small github.com/pippsza/ddnet}\par
+\vspace{2pt}
+Bingo and race platform with a companion Telegram bot for the DDraceNetwork
+gaming community. Next.js + Payload CMS. Each match runs on its own
+dedicated game server. Playwright e2e. Live at
+\href{https://bingo.pippsza.dev}{bingo.pippsza.dev}.
+
+\vspace{6pt}
+{\bfseries Alla Studio} \quad \href{https://allastudio.com}{\color{accent}\small allastudio.com}\par
+\vspace{2pt}
+Commissioned production website for a beauty-studio client. Next.js + Payload
+CMS + Tailwind. Custom CMS for masters, services, prices and reviews with
+role-based access, plus an animated 3D backdrop with Three.js. Live at
+\href{https://allastudio.com}{allastudio.com}.
 
 \end{minipage}
 \end{minipage}
