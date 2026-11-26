@@ -1,56 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Button from '../components/ui/Button';
-
-const lang = 'en'; // Default to English for 404
 ---
 
-<Layout title="404 - Page Not Found" description="The page you're looking for doesn't exist." lang={lang}>
-  <section class="min-h-screen flex items-center justify-center px-6">
-    <div class="text-center space-y-8">
-      <!-- Animated 404 -->
-      <div class="relative" aria-hidden="true">
-        <p class="text-9xl md:text-[12rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent animate-pulse">
-          404
-        </p>
-        <div class="absolute inset-0 blur-3xl opacity-30 bg-gradient-to-r from-primary via-secondary to-accent -z-10"></div>
-      </div>
-
-      <!-- Error message -->
-      <div class="space-y-4">
-        <h1 class="text-3xl md:text-4xl font-bold">
-          Page Not Found
-        </h1>
-        <p class="text-xl text-text-muted max-w-md mx-auto">
-          Oops! The page you're looking for seems to have wandered off into the digital void.
-        </p>
-      </div>
-      
-      <!-- Actions -->
-      <div class="flex flex-wrap gap-4 justify-center pt-8">
-        <Button variant="primary" size="lg" href="/en/" client:load>
-          Go Home
-        </Button>
-        <Button variant="outline" size="lg" href="/en/#contact" client:load>
-          Contact Me
-        </Button>
-      </div>
-      
-      <!-- Decorative elements -->
-      <div class="flex gap-4 justify-center pt-12 opacity-50">
-        <div class="w-16 h-16 rounded-full border-2 border-primary animate-ping"></div>
-        <div class="w-16 h-16 rounded-full border-2 border-secondary animate-ping" style="animation-delay: 0.2s;"></div>
-        <div class="w-16 h-16 rounded-full border-2 border-accent animate-ping" style="animation-delay: 0.4s;"></div>
-      </div>
-    </div>
-  </section>
-</Layout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>pippsza.dev</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <main>
+      <h1>pippsza.dev</h1>
+      <p>New version coming soon.</p>
+    </main>
+  </body>
+</html>
 
 <style>
-  @keyframes ping {
-    75%, 100% {
-      transform: scale(2);
-      opacity: 0;
-    }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: #fff;
+    color: #1f1f1f;
+    font: 400 18px/1.6 Georgia, serif;
+  }
+
+  h1 {
+    font-weight: 500;
+    font-size: 40px;
+    margin: 0 0 8px;
+  }
+
+  p {
+    margin: 0;
+    color: #777;
+  }
+
+  main {
+    text-align: center;
+    padding: 24px;
   }
 </style>
