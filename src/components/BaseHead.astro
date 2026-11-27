@@ -2,26 +2,17 @@
 import type { Locale } from '../constants/data';
 
 interface Props {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   lang: Locale;
-  canonical?: string;
-  image?: string;
 }
 
-const { title: rawTitle, description: rawDescription, lang, canonical, image } = Astro.props;
+const { title, description, lang } = Astro.props;
 
-// Use your real site URL so OG tags point to absolute URLs
 const siteUrl = 'https://pippsza.dev';
-const defaultTitle = 'Pippsza — Full Stack Developer Portfolio';
-const defaultDescription = 'Portfolio of Astakhov Bohdan (pippsza) — Full-Stack developer based in Kharkiv, Ukraine. Production SaaS with Next.js, Payload CMS, TypeScript, Stripe and AI integrations.';
-
-const title = rawTitle || defaultTitle;
-const description = rawDescription || defaultDescription;
-
-const fullCanonical = canonical || `${siteUrl}/${lang}${Astro.url.pathname}`;
-// Default og image placed in public/ (PNG required for social media compatibility)
-const ogImage = image || `${siteUrl}/og-image.png`;
+const fullCanonical = `${siteUrl}${Astro.url.pathname}`;
+// Social networks need a PNG preview
+const ogImage = `${siteUrl}/og-image.png`;
 
 // Map locale codes to proper language tags
 const langMap: Record<Locale, string> = {
@@ -57,7 +48,7 @@ const langMap: Record<Locale, string> = {
 <meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Astakhov Bohdan — Full Stack Developer" />
+<meta property="og:image:alt" content="Bohdan Astakhov, Full Stack Developer" />
 <link rel="image_src" href={ogImage} />
 <meta property="og:locale" content={langMap[lang]} />
 
@@ -67,39 +58,14 @@ const langMap: Record<Locale, string> = {
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImage} />
-<meta name="twitter:image:alt" content="Astakhov Bohdan — Full Stack Developer" />
+<meta name="twitter:image:alt" content="Bohdan Astakhov, Full Stack Developer" />
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-<!-- Fonts — Inter (body) + Space Grotesk (display) -->
+<meta name="theme-color" content="#ffffff" />
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-
-<!-- Theme and Language Detection Script - Runs before page render -->
-<script is:inline>
-  // Single theme — always dark (toggle removed). Override any stale pref.
-  document.documentElement.setAttribute('data-theme', 'dark');
-
-  // Language detection and redirect (only on root path)
-  if (window.location.pathname === '/') {
-    const browserLang = navigator.language.toLowerCase();
-    let targetLang = 'en'; // default
-    
-    if (browserLang.startsWith('uk')) {
-      targetLang = 'uk';
-    } else if (browserLang.startsWith('ru')) {
-      targetLang = 'ru';
-    }
-    
-    // Check if user has a language preference stored
-    const storedLang = localStorage.getItem('preferredLanguage');
-    if (storedLang && ['en', 'uk', 'ru'].includes(storedLang)) {
-      targetLang = storedLang;
-    }
-    
-    // Redirect to language-specific path
-    window.location.href = `/${targetLang}/`;
-  }
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />

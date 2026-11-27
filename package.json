@@ -5,22 +5,16 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "cv": "bash scripts/build-cv.sh",
-    "build": "astro check && astro build && rm -f dist/cv/*.tex dist/cv/*.aux dist/cv/*.log dist/cv/*.out",
+    "cv": "node scripts/build-cv.mjs",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/preact": "^3.5.3",
-    "astro": "^5.0.5",
-    "lenis": "^1.3.23",
-    "lucide-preact": "^0.468.0",
-    "preact": "^10.24.3"
+    "astro": "^5.0.5"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
-    "tailwindcss": "^4.0.0",
     "typescript": "^5.7.2"
   }
 }

@@ -1,143 +1,35 @@
-# Portfolio - Astakhov Bohdan (@pippsza)
+# pippsza.dev
 
-High-performance portfolio built with Astro 5, Preact, and Tailwind CSS v4.
+Personal site of Bohdan Astakhov (@pippsza). One page in English, Ukrainian and Russian, built with Astro.
 
-[🇺🇦 Українська](docs/README.ru.md) | [🇷🇺 Русский](docs/README.ru.md)
-
-## ✨ Features
-
-- 🌐 **Multilingual**: English, Ukrainian, Russian
-- 🎨 **Theme System**: Dark/Light mode with preferences
-- ⚡ **High Performance**: Astro 5 + Preact optimization
-- 🎭 **Interactive Background**: Cursor-reactive animations
-- 🎪 **Animated Skills**: Smooth carousel with hover effects
-- 📱 **Responsive Design**: Perfect on all devices
-- 🔍 **SEO Optimized**: Meta tags, sitemap, i18n alternates
-- 🚀 **DevOps Visualization**: CI/CD pipeline showcase
-
-## 🚀 Quick Start
+## Run locally
 
 ```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm ci
+npm run dev       # http://localhost:4321
+npm run build     # type check and static build into dist/
 ```
 
-Open your browser at `http://localhost:4321`
+## Edit content
 
-## 🛠️ Tech Stack
+All text lives in `src/constants/data.ts`: bio, projects, stack, work and the CV links, one block per language. Bio paragraphs are HTML and may contain links.
 
-- **Framework**: Astro 5
-- **UI Library**: Preact
-- **Styling**: Tailwind CSS v4
-- **Language**: TypeScript
-- **Icons**: Lucide Preact
-- **Animations**: CSS Animations + Preact
+Project screenshots are in `public/projects/`, the portrait is `public/me.jpg`.
 
-## 🎨 Customization
+## CV
 
-### Personal Info
-
-Edit `src/constants/data.ts`:
-
-```typescript
-export const socials = [
-  {
-    name: "GitHub",
-    url: "https://github.com/pippsza",
-    iconName: "Github",
-  },
-];
-```
-
-### Colors
-
-Update `src/styles/global.css`:
-
-```css
-@theme {
-  --color-primary: oklch(0.15 0 0);
-  --color-accent: oklch(0.98 0 0);
-}
-```
-
-### Skills
-
-Modify skills array in `src/constants/data.ts`:
-
-```typescript
-export const skills = {
-  Frontend: [{ name: "React", iconName: "Atom" }],
-  Backend: [
-    { name: "Node.js", iconName: "Server" },
-    { name: "Express.js", iconName: "Zap" },
-    { name: "Python", iconName: "Code2" },
-  ],
-};
-```
-
-## 📦 Deployment
-
-### Vercel
+The CV texts (EN, UK, RU) live in `scripts/build-cv.mjs`, the fonts it embeds in `scripts/cv-fonts/`. After editing them, run:
 
 ```bash
-npm run build
-# Upload dist folder to Vercel
+npm run cv
 ```
 
-### Netlify
+It prints each version to `public/cv/*.pdf` with headless Google Chrome (set `CHROME` to use another Chromium) and fails if a version does not fit on one page. The PDFs are committed to git.
 
-```bash
-npm run build
-# Build command: npm run build
-# Publish directory: dist
-```
+## Deploy
 
-### GitHub Pages
+A push to `main` runs `.github/workflows/build-push.yml`: it builds the Docker image (nginx serving `dist/`) and pushes `portfolio:latest` to Docker Hub.
 
-Update `astro.config.mjs` with your site URL and base path.
+## License
 
-## 🌐 i18n Support
-
-Add translations in `src/constants/data.ts`:
-
-```typescript
-export const dictionary = {
-  en: {
-    greeting: "Hi, I'm",
-    role: "Full Stack Developer",
-  },
-  uk: {
-    /* Ukrainian */
-  },
-  ru: {
-    /* Russian */
-  },
-};
-```
-
-## 📝 License
-
-MIT License - feel free to use for your own portfolio!
-
-## 👤 Author
-
-**Astakhov Bohdan** (@pippsza)
-
-- GitHub: [@pippsza](https://github.com/pippsza)
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
----
-
-⚡ Built with [Astro](https://astro.build), [Preact](https://preactjs.com), and [Tailwind CSS](https://tailwindcss.com)
+MIT

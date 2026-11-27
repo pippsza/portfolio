@@ -1,351 +1,404 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { dictionary, projects, skills, socials, experience, cvLinks, cvPreviews, type Locale } from '../../constants/data';
-import Icon from '../../components/Icon';
-import DevOpsPipeline from '../../components/DevOpsPipeline';
-import ProjectCard from '../../components/ProjectCard';
-import ExperienceCard from '../../components/ExperienceCard';
+import {
+  dictionary,
+  projects,
+  stack,
+  socials,
+  experience,
+  cvLinks,
+  locales,
+  localeLabels,
+  type Locale,
+} from '../../constants/data';
 
 export function getStaticPaths() {
-  return [
-    { params: { lang: 'en' } },
-    { params: { lang: 'uk' } },
-    { params: { lang: 'ru' } },
-  ];
+  return locales.map((lang) => ({ params: { lang } }));
 }
 
 const { lang } = Astro.params as { lang: Locale };
 const t = dictionary[lang];
-const localizedProjects = projects[lang];
-const localizedExperience = experience[lang];
-const cvHref = cvLinks[lang];
-const cvPreview = cvPreviews[lang];
-const projectIcons = ['Rocket', 'Sparkles', 'Bot', 'Network', 'Brain', 'Send'];
 ---
 
-<Layout title={`Astakhov Bohdan | pippsza - Full Stack Developer`} description={`${t.heroDescription} | Portfolio of Astakhov Bohdan (@pippsza)`} lang={lang}>
-  <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center px-6 py-14">
-    <div class="container mx-auto relative z-10">
-      <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20">
+<Layout title={t.metaTitle} description={t.metaDescription} lang={lang}>
+  <div class="wrap">
+    <main>
+      <h1>@pippsza</h1>
 
-        <!-- Photo -->
-        <div class="relative animate-fade-in-up order-1 lg:order-2" style="animation-delay: 0.15s;">
-          <div class="hero-photo-glow"></div>
-          <div class="hero-photo">
-            <img
-              src="/avatar.jpg"
-              alt="Astakhov Bohdan"
-              width="300"
-              height="300"
-              loading="eager"
-            />
-          </div>
-        </div>
-
-        <!-- Text Content -->
-        <div class="text-center lg:text-left space-y-6 order-2 lg:order-1 max-w-2xl">
-          <div class="animate-fade-in-up" style="animation-delay: 0s;">
-            <p class="text-accent font-medium text-lg mb-2">{t.greeting}</p>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold">
-              <span class="text-gradient-animated">Astakhov Bohdan</span>
-            </h1>
-          </div>
-
-          <p class="text-xl md:text-2xl font-semibold text-text-muted animate-fade-in-up" style="animation-delay: 0.1s;">
-            {t.role}
-          </p>
-
-          <p class="text-base md:text-lg text-text-muted leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
-            {t.heroDescription}
-          </p>
-
-          <div class="grid grid-rows-3 sm:flex sm:flex-wrap w-full gap-4 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 0.3s;">
-            <a
-              href={`/${lang}/#contact`}
-              data-magnetic
-              class="inline-flex w-full sm:w-fit items-center gap-2 px-6 py-3 rounded-lg bg-accent text-surface font-semibold
-                     hover:bg-accent-hover transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 btn-hover"
-            >
-              <Icon name="Mail" size={20} client:load />
-              {t.contactMe}
+      <div class="tabs ui">
+        <span class="tabs-label">{t.bio}</span>
+        <span class="tabs-right">
+          <button type="button" class="on" data-bio="short" aria-pressed="true">{t.short}</button>
+          <button type="button" data-bio="long" aria-pressed="false">{t.long}</button>
+          <span class="sep" aria-hidden="true"></span>
+          {locales.map((l) => (
+            <a href={`/${l}/`} class={l === lang ? 'on' : undefined} hreflang={l} data-lang={l} aria-current={l === lang ? 'page' : undefined}>
+              {localeLabels[l]}
             </a>
-            <a
-              href={`/${lang}/#projects`}
-              class="inline-flex w-full sm:w-fit items-center gap-2 px-6 py-3 rounded-lg border border-border
-                     text-text-dark font-semibold hover:border-accent hover:text-accent
-                     transition-all duration-300"
-            >
-              <Icon name="Layers" size={20} client:load />
-              {t.viewProjects}
+          ))}
+        </span>
+      </div>
+
+      <div class="bio" data-bio="short">
+        {t.bioShort.map((p) => <p set:html={p} />)}
+      </div>
+      <div class="bio" data-bio="long" hidden>
+        {t.bioLong.map((p) => <p set:html={p} />)}
+      </div>
+
+      <h2>{t.projects}</h2>
+      <div class="projects">
+        {projects[lang].map((project) => (
+          <section class="project">
+            <a class="shot" href={project.link ?? project.github} tabindex="-1" aria-hidden="true">
+              <img src={project.image} alt="" width="1200" height="750" loading="lazy" />
             </a>
-            <a
-              href={cvHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex w-full sm:w-fit items-center gap-2 px-6 py-3 rounded-lg border border-border
-                     text-text-dark font-semibold hover:border-accent hover:text-accent
-                     transition-all duration-300"
-            >
-              <Icon name="Download" size={20} client:load />
-              {t.downloadCV}
-            </a>
-          </div>
-
-          <!-- Social Links -->
-          <div class="flex gap-4 justify-center lg:justify-start pt-4 animate-fade-in-up" style="animation-delay: 0.4s;">
-            {socials.map((social, index) => (
-              <a
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-3 rounded-xl border border-border/50 bg-surface/30 backdrop-blur-sm
-                       hover:border-accent hover:bg-accent/10 hover:scale-110
-                       transition-all duration-300 group"
-                aria-label={social.name}
-                title={social.name}
-                style={`animation-delay: ${0.4 + index * 0.1}s`}
-              >
-                <Icon name={social.iconName} size={22} class="text-text-muted group-hover:text-accent transition-colors duration-300" client:load />
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-24 px-6">
-    <div class="container mx-auto max-w-5xl">
-      <div class="text-center mb-12 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold">
-          <span class="text-accent">{t.aboutTitle.split(' ')[0]}</span>
-          {' '}{t.aboutTitle.split(' ').slice(1).join(' ')}
-        </h2>
-      </div>
-      <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16 reveal">
-        <img
-          src="/about.jpg"
-          alt="Astakhov Bohdan at DOU Day"
-          width="320"
-          height="426"
-          loading="lazy"
-          class="shrink-0 w-60 md:w-72 lg:w-80 rounded-2xl border border-border shadow-lg object-cover"
-        />
-        <p class="text-lg text-text-muted leading-relaxed text-center md:text-left">
-          {t.aboutDescription}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Resume Section -->
-  <section id="resume" class="py-24 px-6">
-    <div class="container mx-auto max-w-4xl">
-      <div class="text-center mb-12 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">
-          <span class="text-accent">{t.resumeTitle.split(' ')[0]}</span>
-          {' '}{t.resumeTitle.split(' ').slice(1).join(' ')}
-        </h2>
-        <p class="text-lg text-text-muted">{t.resumeDescription}</p>
-      </div>
-
-      <div class="flex flex-col items-center gap-8 reveal">
-        <a
-          href={cvHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t.openResume}
-          class="group relative block max-w-md rounded-xl overflow-hidden border border-border shadow-lg
-                 hover:border-accent transition-all duration-300"
-        >
-          <img
-            src={cvPreview}
-            alt={t.resumeTitle}
-            width="620"
-            height="877"
-            loading="lazy"
-            class="w-full h-auto"
-          />
-          <div class="absolute inset-0 flex items-center justify-center bg-surface/0
-                      group-hover:bg-surface/40 transition-all duration-300">
-            <span class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-accent text-surface font-semibold
-                         opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <Icon name="ExternalLink" size={20} client:load />
-              {t.openResume}
-            </span>
-          </div>
-        </a>
-
-        <a
-          href={cvHref}
-          download
-          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-accent text-surface font-semibold
-                 hover:bg-accent-hover transition-all duration-300 hover:shadow-lg hover:shadow-accent/30 btn-hover"
-        >
-          <Icon name="Download" size={22} client:load />
-          {t.downloadCV}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="py-24 px-6">
-    <div class="container mx-auto max-w-4xl">
-      <div class="text-center mb-16 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">
-          <span class="text-accent">{t.experienceTitle.split(' ')[0]}</span>
-          {' '}{t.experienceTitle.split(' ').slice(1).join(' ')}
-        </h2>
-        <p class="text-lg text-text-muted">
-          {t.experienceDescription}
-        </p>
-      </div>
-
-      <!-- Timeline -->
-      <div class="relative md:pl-8 md:border-l-2 md:border-border space-y-6">
-        {localizedExperience.map((exp, index) => (
-          <ExperienceCard
-            experience={exp}
-            index={index}
-            client:load
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-24 px-6">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-16 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">
-          <span class="text-accent">{t.projectsTitle.split(' ')[0]}</span>
-          {' '}{t.projectsTitle.split(' ').slice(1).join(' ')}
-        </h2>
-        <p class="text-lg text-text-muted">
-          {t.projectsDescription}
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
-        {localizedProjects.map((project, index) => (
-          <ProjectCard
-            project={project}
-            viewProject={t.viewProject}
-            viewCode={t.viewCode}
-            iconName={projectIcons[index] ?? 'Layers'}
-            index={index}
-            client:load
-          />
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section - Full width carousel -->
-  <section id="skills" class="py-24">
-    <div class="container mx-auto px-6 mb-10">
-      <div class="text-center reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">
-          <span class="text-accent">{t.skillsTitle.split(' ')[0]}</span>
-          {' '}{t.skillsTitle.split(' ').slice(1).join(' ')}
-        </h2>
-        <p class="text-lg text-text-muted">
-          {t.skillsDescription}
-        </p>
-      </div>
-    </div>
-
-    <!-- Static skill grid -->
-    <div class="container mx-auto px-6">
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Object.entries(skills).map(([category, skillList], index) => (
-          <div
-            class="reveal rounded-2xl border border-border/60 bg-surface/40 p-6 backdrop-blur-sm hover-lift"
-            style={`--reveal-delay:${index * 70}ms`}
-          >
-            <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-accent">
-              {category}
-            </h3>
-            <div class="flex flex-wrap gap-2.5">
-              {skillList.map((skill) => (
-                <span class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-2 text-sm font-medium text-text-dark">
-                  <span class="text-accent flex items-center"><Icon name={skill.iconName} size={16} /></span>
-                  {skill.name}
-                </span>
-              ))}
+            <div class="project-head">
+              <h3><a href={project.link ?? project.github}>{project.title}</a></h3>
+              <span class="ui year">2026</span>
             </div>
+            <p>{project.description}</p>
+            <div class="meta ui">
+              <span>{project.tags.join(', ')}</span>
+              <span class="icons">
+                {project.link && (
+                  <a class="icon" href={project.link} title={t.openSite} aria-label={t.openSite}>
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>
+                  </a>
+                )}
+                {project.github && (
+                  <a class="icon" href={project.github} title={t.code} aria-label={t.code}>
+                    <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z" /></svg>
+                  </a>
+                )}
+              </span>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <h2>{t.stack}</h2>
+      <ul class="stack">
+        {stack.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <h2 id="work">{t.work}</h2>
+      <div class="work">
+        {experience[lang].map((job) => (
+          <div>
+            <div><a href={job.url}>{job.company}</a><small>{job.position}</small></div>
+            <span class="ui">{job.period}</span>
           </div>
         ))}
       </div>
-    </div>
-  </section>
 
-  <!-- DevOps Pipeline Section -->
-  <section class="py-24 px-6">
-    <div class="container mx-auto max-w-6xl">
-      <div class="text-center mb-16 reveal">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">
-          <span class="text-accent">{t.devOpsTitle.split(' ')[0]}</span>
-          {' '}{t.devOpsTitle.split(' ').slice(1).join(' ')}
-        </h2>
-        <p class="text-lg text-text-muted">
-          {t.devOpsDescription}
-        </p>
-      </div>
-
-      <DevOpsPipeline client:load />
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-24 px-6">
-    <div class="container mx-auto max-w-2xl text-center reveal">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6">
-        <span class="text-accent">{t.contactTitle.split(' ')[0]}</span>
-        {' '}{t.contactTitle.split(' ').slice(1).join(' ')}
-      </h2>
-      <p class="text-lg text-text-muted mb-10">
-        {t.contactDescription}
-      </p>
-
-      <div class="flex flex-wrap gap-4 justify-center">
-        {socials.map((social, index) => (
-          <a
-            href={social.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center w-full sm:w-fit gap-3 px-6 py-3 rounded-xl
-                   bg-surface/50 backdrop-blur-sm border border-border/50
-                   hover:border-accent/50 hover:bg-accent/10
-                   transition-all duration-300 group animate-fade-in-up"
-            style={`animation-delay: ${index * 0.1}s`}
-          >
-            <Icon name={social.iconName} size={20} class="text-accent" client:load />
-            <span class="font-medium text-text-dark group-hover:text-accent transition-colors duration-300">{social.name}</span>
-          </a>
+      <p class="links">
+        {socials.map((s) => (
+          <>
+            <a href={s.url}>{s.name}</a>,{' '}
+          </>
         ))}
-      </div>
-    </div>
-  </section>
+        <a href={cvLinks[lang]}>{t.cv}</a>
+      </p>
+    </main>
+
+    <aside class="photo">
+      <img src="/me.jpg" alt="Bohdan Astakhov" width="720" height="900" />
+    </aside>
+  </div>
 </Layout>
 
 <script>
-  // Intersection Observer for reveal animations
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+  const buttons = document.querySelectorAll<HTMLButtonElement>('button[data-bio]');
+  const bios = document.querySelectorAll<HTMLElement>('div.bio');
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      buttons.forEach((b) => {
+        const on = b === button;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', String(on));
       });
-    },
-    { threshold: 0.1 }
-  );
+      bios.forEach((bio) => {
+        bio.hidden = bio.dataset.bio !== button.dataset.bio;
+      });
+    });
+  });
 
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  // The root page redirects to the stored language
+  document.querySelectorAll<HTMLAnchorElement>('a[data-lang]').forEach((a) => {
+    a.addEventListener('click', () => localStorage.setItem('preferredLanguage', a.dataset.lang ?? 'en'));
+  });
 </script>
+
+<style>
+  .wrap {
+    max-width: 1340px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 600px) 1fr;
+    gap: 60px;
+    padding: 44px 50px 100px;
+  }
+
+  h1 {
+    font-size: 44px;
+    margin: 0 0 36px;
+    letter-spacing: -0.01em;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 48px 0 16px;
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--muted);
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 22px;
+  }
+
+  .tabs-right {
+    display: flex;
+    gap: 16px;
+  }
+
+  .tabs-label,
+  .tabs button,
+  .tabs a {
+    padding-bottom: 10px;
+  }
+
+  .tabs button,
+  .tabs a {
+    all: unset;
+    cursor: pointer;
+    padding-bottom: 10px;
+    color: var(--muted);
+  }
+
+  .tabs button:hover,
+  .tabs a:hover {
+    color: var(--ink);
+  }
+
+  .tabs .on {
+    color: var(--ink);
+    box-shadow: inset 0 -1.5px 0 var(--ink);
+  }
+
+  .tabs .sep {
+    width: 1px;
+    background: #e2e2e2;
+    margin: 2px 2px 12px;
+    padding: 0;
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 26px;
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 34px;
+    min-width: 0;
+  }
+
+  .shot {
+    display: block;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e6e6e6;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .shot:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .project h3 {
+    font-size: 21px;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .project h3 a {
+    color: var(--ink);
+  }
+
+  .year {
+    color: var(--muted);
+  }
+
+  .project p {
+    flex-grow: 1;
+    color: var(--soft);
+    margin: 4px 0 12px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .icons {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .icon {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid #e3e3e3;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .icon:hover {
+    color: #111;
+    border-color: #bbb;
+    background: #f6f6f4;
+  }
+
+  .stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .stack li::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #888;
+    margin: 0 14px 3px 0;
+  }
+
+  .work > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    border-top: 1px solid var(--line);
+    padding: 13px 0;
+  }
+
+  .work small {
+    display: block;
+    color: #7a7a7a;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .work .ui {
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .links {
+    margin-top: 36px;
+  }
+
+  .photo {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .photo img {
+    width: 420px;
+    max-width: 100%;
+    height: min(600px, calc(100vh - 80px));
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+  }
+
+  @media (max-width: 900px) {
+    .wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 24px 20px 80px;
+    }
+
+    .photo {
+      position: static;
+      order: -1;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 28px 0 24px;
+    }
+
+    .projects {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .tabs-label {
+      display: none;
+    }
+
+    .tabs,
+    .tabs-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .tabs-right {
+      gap: 12px;
+    }
+  }
+</style>
