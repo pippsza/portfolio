@@ -89,22 +89,23 @@ export const stack = [
 
 export interface Experience {
   company: string;
+  url: string;
   position: string;
   period: string;
 }
 
 export const experience: Record<Locale, Experience[]> = {
   en: [
-    { company: "10x Media GmbH", position: "Full Stack Developer", period: "Aug 2026 – now" },
-    { company: "Cyber Pioneers Inc.", position: "Full Stack Developer", period: "Jul 2025 – now" },
+    { company: "10x Media GmbH", url: "https://10xmedia.de", position: "Full Stack Developer", period: "Aug 2026 – now" },
+    { company: "Cyber Pioneers Inc.", url: "https://cyberpioneersinc.com", position: "Full Stack Developer", period: "Jul 2025 – now" },
   ],
   uk: [
-    { company: "10x Media GmbH", position: "Full Stack Developer", period: "Серп 2026 – дотепер" },
-    { company: "Cyber Pioneers Inc.", position: "Full Stack Developer", period: "Лип 2025 – дотепер" },
+    { company: "10x Media GmbH", url: "https://10xmedia.de", position: "Full Stack Developer", period: "Серп 2026 – дотепер" },
+    { company: "Cyber Pioneers Inc.", url: "https://cyberpioneersinc.com", position: "Full Stack Developer", period: "Лип 2025 – дотепер" },
   ],
   ru: [
-    { company: "10x Media GmbH", position: "Full Stack Developer", period: "Авг 2026 – сейчас" },
-    { company: "Cyber Pioneers Inc.", position: "Full Stack Developer", period: "Июл 2025 – сейчас" },
+    { company: "10x Media GmbH", url: "https://10xmedia.de", position: "Full Stack Developer", period: "Авг 2026 – сейчас" },
+    { company: "Cyber Pioneers Inc.", url: "https://cyberpioneersinc.com", position: "Full Stack Developer", period: "Июл 2025 – сейчас" },
   ],
 };
 

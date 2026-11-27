@@ -29,6 +29,7 @@ const versions = {
     jobs: [
       {
         company: '10x Media GmbH',
+        url: 'https://10xmedia.de',
         when: 'Aug 2026 – now, part-time, remote',
         position: 'Full Stack Developer',
         bullets: [
@@ -38,6 +39,7 @@ const versions = {
       },
       {
         company: 'Cyber Pioneers Inc.',
+        url: 'https://cyberpioneersinc.com',
         when: 'Jul 2025 – now, part-time, remote',
         position: 'Full Stack Developer',
         bullets: [
@@ -78,6 +80,7 @@ const versions = {
     jobs: [
       {
         company: '10x Media GmbH',
+        url: 'https://10xmedia.de',
         when: 'Серп 2026 – дотепер, part-time, віддалено',
         position: 'Full Stack Developer',
         bullets: [
@@ -87,6 +90,7 @@ const versions = {
       },
       {
         company: 'Cyber Pioneers Inc.',
+        url: 'https://cyberpioneersinc.com',
         when: 'Лип 2025 – дотепер, part-time, віддалено',
         position: 'Full Stack Developer',
         bullets: [
@@ -127,6 +131,7 @@ const versions = {
     jobs: [
       {
         company: '10x Media GmbH',
+        url: 'https://10xmedia.de',
         when: 'Авг 2026 – сейчас, part-time, удалённо',
         position: 'Full Stack Developer',
         bullets: [
@@ -136,6 +141,7 @@ const versions = {
       },
       {
         company: 'Cyber Pioneers Inc.',
+        url: 'https://cyberpioneersinc.com',
         when: 'Июл 2025 – сейчас, part-time, удалённо',
         position: 'Full Stack Developer',
         bullets: [
@@ -219,7 +225,7 @@ function render(v) {
 </header>
 <p class="summary">${esc(v.summary)}</p>
 <h2>${t.experience}</h2>
-${v.jobs.map((j) => `<div class="job"><div class="row"><b>${esc(j.position)}, ${esc(j.company)}</b><span class="ui">${esc(j.when)}</span></div>
+${v.jobs.map((j) => `<div class="job"><div class="row"><b>${esc(j.position)}, <a href="${j.url}">${esc(j.company)}</a></b><span class="ui">${esc(j.when)}</span></div>
 <ul>${j.bullets.map((b) => `<li>${esc(b)}</li>`).join('')}</ul></div>`).join('\n')}
 <h2>${t.projects}</h2>
 ${v.projects.map(([name, url, text]) => `<div class="proj"><div class="row"><b>${esc(name)}</b><a class="ui" href="${url}">${host(url)}</a></div><p>${esc(text)}</p></div>`).join('\n')}

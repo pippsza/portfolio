@@ -86,7 +86,7 @@ const t = dictionary[lang];
       <div class="work">
         {experience[lang].map((job) => (
           <div>
-            <div>{job.company}<small>{job.position}</small></div>
+            <div><a href={job.url}>{job.company}</a><small>{job.position}</small></div>
             <span class="ui">{job.period}</span>
           </div>
         ))}
