@@ -1,0 +1,111 @@
+% ATS-friendly single-column resume — for job boards / Workday / Greenhouse / Lever
+% No tables, no two-column layout, no photo, no special chars, no tikz badges.
+% Standard section headings, action verbs leading bullets, one-line company context.
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,margin=1.3cm]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+
+\setmainfont{DejaVu Sans}[
+  BoldFont       = {DejaVu Sans Bold},
+  ItalicFont     = {DejaVu Sans Oblique},
+  BoldItalicFont = {DejaVu Sans Bold Oblique},
+  Scale          = 0.95
+]
+
+\definecolor{accent}{HTML}{1F2937}
+\definecolor{linkblue}{HTML}{2563EB}
+\definecolor{midgray}{HTML}{4B5563}
+
+\hypersetup{colorlinks=true, urlcolor=linkblue, linkcolor=linkblue}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\linespread{1.15}
+
+\emergencystretch=2em
+\hyphenpenalty=2000
+
+\titleformat{\section}
+  {\large\bfseries\color{accent}}{}{0em}{}
+  [{\vspace{-3pt}\color{accent!40}\titlerule[0.5pt]}]
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+\setlist[itemize]{leftmargin=14pt, itemsep=2pt, topsep=2pt, parsep=0pt, label=\textbullet}
+
+\begin{document}
+
+% ============================================================
+% HEADER — name, title, contact on one line (ATS reads top-down)
+% ============================================================
+{\Huge\bfseries\color{accent}Bohdan Astakhov}\par
+\vspace{4pt}
+{\large Full-Stack Developer — Next.js · Payload CMS · TypeScript}\par
+\vspace{10pt}
+Kharkiv, Ukraine · +380 98 660 1604 · \href{mailto:bastahov16@gmail.com}{bastahov16@gmail.com} · \href{https://github.com/pippsza}{github.com/pippsza} · \href{https://www.linkedin.com/in/bohdan-astakhov-36a95a349/}{linkedin.com/in/bohdan-astakhov} · \href{https://pippsza.dev}{pippsza.dev}\par
+\vspace{4pt}
+{\color{midgray}Open to remote roles · UA/EU timezone}
+
+% ============================================================
+% EXPERIENCE
+% ============================================================
+\section*{EXPERIENCE}
+
+{\bfseries Full-Stack Developer, Cyber Pioneers Inc.} \hfill {\itshape July 2025 — Present}\par
+{\color{midgray}\small SaaS suite for B2B AutoTech (body-shop management), internal HR/finance ops with AI, and marketing automation — small fully-remote team}
+\begin{itemize}
+  \item Shipped product features end-to-end on Next.js, Payload CMS, and MongoDB — UI, API, data model, deployment.
+  \item Built plan-gated Stripe subscription flows powering paid tiers across the suite.
+  \item Integrated AI features via Vercel AI SDK (OpenAI, Anthropic, ElevenLabs) — agent evaluations, content generation, voice synthesis.
+  \item Added Qdrant-backed semantic search, replacing keyword matching for AI-driven recommendations.
+  \item Own production deployment across multiple VPS — Docker, Nginx, GitHub Actions CI/CD, Watchtower auto-deploy.
+  \item Participate in code reviews, scope features with PM, support onboarding for new hires.
+\end{itemize}
+
+% ============================================================
+% PROJECTS
+% ============================================================
+\section*{PROJECTS}
+
+{\bfseries DDNet Bingo} — \href{https://github.com/pippsza/ddnet}{github.com/pippsza/ddnet} · \href{https://bingo.pippsza.dev}{bingo.pippsza.dev}\par
+Bingo and race platform with companion Telegram bot for the DDraceNetwork community. Next.js + Payload CMS. Each match runs on its own dedicated game server. Playwright e2e.
+
+\vspace{5pt}
+{\bfseries Alla Studio} — \href{https://allastudio.com}{allastudio.com}\par
+Commissioned production website for a beauty-studio client. Next.js + Payload CMS + Tailwind. Custom CMS (masters, services, prices, reviews) with role-based access and an animated Three.js 3D backdrop.
+
+% ============================================================
+% SKILLS — keyword-rich for ATS search; includes AI/LLM block
+% (recruiters often filter on "OpenAI", "RAG", "Qdrant", etc.)
+% ============================================================
+\section*{SKILLS}
+
+\noindent{\bfseries Languages:} TypeScript, JavaScript, Python (basic)\par
+{\bfseries Frontend:} Next.js (App Router), React, Tailwind CSS, shadcn/ui, Radix UI, Zustand\par
+{\bfseries Backend:} Payload CMS, Node.js, MongoDB, NextAuth, Stripe API, REST, GraphQL\par
+{\bfseries AI \& LLM:} Vercel AI SDK, OpenAI, Anthropic, ElevenLabs, Qdrant, RAG, vector search\par
+{\bfseries DevOps:} Docker, docker-compose, GitHub Actions, Nginx, Watchtower, Linux, VPS administration\par
+{\bfseries Testing:} Vitest, Playwright
+
+% ============================================================
+% EDUCATION
+% ============================================================
+\section*{EDUCATION}
+
+{\bfseries Kharkiv National Polytechnic University (KPI)} — Bachelor's Degree, in progress \hfill {\itshape 2024 — 2028}\par
+{\bfseries GoIT IT School} — Fullstack Developer, Cybersecurity \hfill {\itshape 2024 — 2025}
+
+% ============================================================
+% LANGUAGES (spoken)
+% ============================================================
+\section*{LANGUAGES}
+
+English (B1) · Ukrainian (Native) · Russian (Native)
+
+\end{document}
